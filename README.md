@@ -30,25 +30,31 @@ By bypassing EVM execution gas constraints (`--skip-tx`), this harness replicate
 ## 🚀 Quick Start & Reproduction
 
 ### 1. Installation
+
 ```bash
-git clone [https://github.com/kirilks2026-maker/0g-da-phase3-kessler-benchmark.git](https://github.com/kirilks2026-maker/0g-da-phase3-kessler-benchmark.git)
+git clone https://github.com
 cd 0g-da-phase3-kessler-benchmark
 npm install
-2. Configuration
-Create a .env file based on .env.example:
+```
 
-Bash
+### 2. Configuration
+Create a `.env` file based on `.env.example`:
+
+```bash
 cp .env.example .env
-Populate your worker private keys in .env.
+```
+Populate your worker private keys in `.env`.
 
-3. Execution
+### 3. Execution
 Run the benchmark harness:
 
-Bash
+```bash
 node uploader.js
-📊 Benchmark Summary & Bug Report
+```
+
+### 📊 Benchmark Summary & Bug Report
 Detailed telemetry, comparative analysis against Phase 2 (EVM-bound), and root-cause isolation logs are available in the official report:
 
-👉 Read the Full 0G Labs Bug Report (0g_labs_bug_report.md)
+👉 [Read the Full 0G Labs Bug Report (0g_labs_bug_report.md)](0g_labs_bug_report.md)
 
-Disclaimer: This benchmark is conducted purely for infrastructure research and performance audit purposes on the 0G Galileo Testnet.
+*Disclaimer: This benchmark is conducted purely for infrastructure research and performance audit purposes on the 0G Galileo Testnet.*
