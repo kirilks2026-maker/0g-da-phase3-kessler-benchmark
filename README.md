@@ -1,3 +1,4 @@
+Markdown
 # ⚡ 0G DA Phase 3 Kessler Cascade Benchmark
 
 An open-source, high-fidelity stress-testing framework designed to isolate off-chain performance limitations of the **0G Data Availability (DA)** storage layer.
@@ -17,27 +18,34 @@ By bypassing EVM execution gas constraints (`--skip-tx`), this harness replicate
 
 ## 📂 Repository Structure
 
-```text
-├── 0g_labs_bug_report.md      # Comprehensive technical analysis report for 0G Labs
-├── benchmark_detailed_report.json # Raw benchmark telemetry and execution metrics
-├── uploader.js                    # Core multi-worker Kessler Cascade stress harness
-├── package.json                   # Dependencies (dotenv)
-├── .env.example                   # Environment configuration template
-└── .gitignore                     # Git exclusion rules
+- `0g_labs_bug_report.md` — Comprehensive technical analysis report for 0G Labs
+- `benchmark_detailed_report.json` — Raw benchmark telemetry and execution metrics
+- `uploader.js` — Core multi-worker Kessler Cascade stress harness
+- `package.json` — Dependencies (dotenv)
+- `.env.example` — Environment configuration template
+- `.gitignore` — Git exclusion rules
 
-🚀 Quick Start & Reproduction
-1. Installation
+---
+
+## 🚀 Quick Start & Reproduction
+
+### 1. Installation
+```bash
 git clone [https://github.com/kirilks2026-maker/0g-da-phase3-kessler-benchmark.git](https://github.com/kirilks2026-maker/0g-da-phase3-kessler-benchmark.git)
 cd 0g-da-phase3-kessler-benchmark
 npm install
 2. Configuration
 Create a .env file based on .env.example:
+
+Bash
 cp .env.example .env
 Populate your worker private keys in .env.
+
 3. Execution
 Run the benchmark harness:
-node uploader.js
 
+Bash
+node uploader.js
 📊 Benchmark Summary & Bug Report
 Detailed telemetry, comparative analysis against Phase 2 (EVM-bound), and root-cause isolation logs are available in the official report:
 
