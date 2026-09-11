@@ -36,7 +36,7 @@
 3. **Node Selection Exhaustion (Epoch 6)**:
    * Severe performance degradation observed in Epoch 6 (70% drop rate).
    * **Root Cause Error**: Ingestion client stalled during node discovery/selection (`INFO Selecting nodes ...`), resulting in timeouts.
-   * Out of 10 parallel workers, only Worker 10 maintained consistent write access, indicating severe storage/DA node saturation and lockouts across the cluster.
+   * Across 60 sequential chunk allocations within the epoch, only Worker 10 maintained consistent write access during the final bursts, indicating severe storage/DA node saturation and lockouts across the cluster.
 
 ---
 
