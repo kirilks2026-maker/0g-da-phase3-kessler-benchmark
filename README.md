@@ -24,7 +24,7 @@ By bypassing EVM execution gas constraints (`--skip-tx`), this harness replicate
 - `package.json` — Dependencies (dotenv)
 - `.env.example` — Environment configuration template
 - `.gitignore` — Git exclusion rules
-- assets/ — Terminal execution screenshots and visual evidence of Circuit Breaker triggers.
+- `assets/ — Terminal execution screenshots and visual evidence of Circuit Breaker triggers.
 
 ---
 
