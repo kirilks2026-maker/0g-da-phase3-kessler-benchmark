@@ -31,11 +31,9 @@ By bypassing EVM execution gas constraints (`--skip-tx`), this harness replicate
 
 ### 1. Installation
 
-```bash
-git clone https://github.com
+git clone https://github.com/kirilks2026-maker/0g-da-phase3-kessler-benchmark.git
 cd 0g-da-phase3-kessler-benchmark
 npm install
-```
 
 ### 2. Configuration
 Create a `.env` file based on `.env.example`:
