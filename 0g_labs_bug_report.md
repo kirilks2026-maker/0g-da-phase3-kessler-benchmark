@@ -1,92 +1,39 @@
-# 🚨 0G STORAGE DA INGESTION BENCHMARK REPORT
-**Target Network:** `evmrpc-testnet.0g.ai`
-**Timestamp (UTC):** 2026-09-07 19:55:07
-**Tester Experience:** Infrastructure Stress-Test Simulation (Phase 2)
+# 0G DA Ingestion Bottleneck & Storage Node Saturation Report (Phase 3)
+
+## Summary
+* **Timestamp**: 2026-09-10T09:36:27.741Z
+* **Framework Phase**: Phase-3 (Direct DA Ingestion Marathon)
+* **Chunk Size**: 350 MB
+* **Total Payload Uploaded**: 56,000 MB (56 GB)
+* **Total Transactions**: 210 (160 Successful, 50 Failed)
+* **Overall Failure Rate**: ~23.8%
 
 ---
 
-## 📊 1. BENCHMARK EXECUTIVE SUMMARY
-* **Total Sectors Pushed:** `280`
-* **Successful Ingestions:** `211`
-* **Network Drops (Failed):** `69`
-* **Overall Failure Rate:** `24.64%`
+## Epoch Metrics Breakdown
 
-### 💥 CRITICAL NETWORK DEGRADATION POINT
-> **Status:** ❌ Множитель x7 (Drop Rate в эпохе: 98.57%)
-
----
-
-## 🔍 2. ERROR SPECTRUM ANALYTICS (Top unique logs)
-Ниже приведены уникальные ошибки, зафиксированные при падении ноды:
-
-* **[4 occurrences]** `"\u001b[36mINFO\u001b[0m[2026-09-07T19:27:01Z] Selecting nodes ...                           \u001b[36mINFO\u001b[0m[202...`
-* **[4 occurrences]** `"\u001b[36mINFO\u001b[0m[2026-09-07T19:25:08Z] Selecting nodes ...                           \u001b[36mINFO\u001b[0m[202...`
-* **[2 occurrences]** `"\u001b[36mINFO\u001b[0m[2026-09-07T19:46:08Z] Selecting nodes ...                           \u001b[36mINFO\u001b[0m[202...`
-* **[2 occurrences]** `"\u001b[36mINFO\u001b[0m[2026-09-07T19:44:25Z] Selecting nodes ...                           \u001b[36mINFO\u001b[0m[202...`
-* **[2 occurrences]** `"\u001b[36mINFO\u001b[0m[2026-09-07T19:40:53Z] Selecting nodes ...                           \u001b[36mINFO\u001b[0m[202...`
-* **[2 occurrences]** `"\u001b[36mINFO\u001b[0m[2026-09-07T19:39:00Z] Selecting nodes ...                           \u001b[36mINFO\u001b[0m[202...`
-* **[2 occurrences]** `"\u001b[36mINFO\u001b[0m[2026-09-07T19:37:18Z] Selecting nodes ...                           \u001b[36mINFO\u001b[0m[202...`
-* **[2 occurrences]** `"\u001b[36mINFO\u001b[0m[2026-09-07T19:35:32Z] Selecting nodes ...                           \u001b[36mINFO\u001b[0m[202...`
-* **[2 occurrences]** `"\u001b[36mINFO\u001b[0m[2026-09-07T19:33:38Z] Selecting nodes ...                           \u001b[36mINFO\u001b[0m[202...`
-* **[2 occurrences]** `"\u001b[36mINFO\u001b[0m[2026-09-07T19:31:56Z] Selecting nodes ...                           \u001b[36mINFO\u001b[0m[202...`
-* **[2 occurrences]** `"\u001b[36mINFO\u001b[0m[2026-09-07T19:30:32Z] Selecting nodes ...                           \u001b[36mINFO\u001b[0m[202...`
-* **[2 occurrences]** `"\u001b[36mINFO\u001b[0m[2026-09-07T19:28:51Z] Selecting nodes ...                           \u001b[36mINFO\u001b[0m[202...`
-* **[1 occurrences]** `"\u001b[36mINFO\u001b[0m[2026-09-07T19:54:10Z] Selecting nodes ...                           \u001b[36mINFO\u001b[0m[202...`
-* **[1 occurrences]** `"\u001b[36mINFO\u001b[0m[2026-09-07T19:53:39Z] Selecting nodes ...                           \u001b[36mINFO\u001b[0m[202...`
-* **[1 occurrences]** `"\u001b[36mINFO\u001b[0m[2026-09-07T19:53:08Z] Selecting nodes ...                           \u001b[36mINFO\u001b[0m[202...`
-* **[1 occurrences]** `"\u001b[36mINFO\u001b[0m[2026-09-07T19:53:07Z] Selecting nodes ...                           \u001b[36mINFO\u001b[0m[202...`
-* **[1 occurrences]** `"\u001b[36mINFO\u001b[0m[2026-09-07T19:52:32Z] Selecting nodes ...                           \u001b[36mINFO\u001b[0m[202...`
-* **[1 occurrences]** `"\u001b[36mINFO\u001b[0m[2026-09-07T19:51:53Z] Selecting nodes ...                           \u001b[36mINFO\u001b[0m[202...`
-* **[1 occurrences]** `"\u001b[36mINFO\u001b[0m[2026-09-07T19:51:25Z] Selecting nodes ...                           \u001b[36mINFO\u001b[0m[202...`
-* **[1 occurrences]** `"\u001b[36mINFO\u001b[0m[2026-09-07T19:51:16Z] Selecting nodes ...                           \u001b[36mINFO\u001b[0m[202...`
-* **[1 occurrences]** `"\u001b[36mINFO\u001b[0m[2026-09-07T19:51:00Z] Selecting nodes ...                           \u001b[36mINFO\u001b[0m[202...`
-* **[1 occurrences]** `"\u001b[36mINFO\u001b[0m[2026-09-07T19:50:11Z] Selecting nodes ...                           \u001b[36mINFO\u001b[0m[202...`
-* **[1 occurrences]** `"\u001b[36mINFO\u001b[0m[2026-09-07T19:49:45Z] Selecting nodes ...                           \u001b[36mINFO\u001b[0m[202...`
-* **[1 occurrences]** `"\u001b[36mINFO\u001b[0m[2026-09-07T19:49:32Z] Selecting nodes ...                           \u001b[36mINFO\u001b[0m[202...`
-* **[1 occurrences]** `"\u001b[36mINFO\u001b[0m[2026-09-07T19:49:14Z] Selecting nodes ...                           \u001b[36mINFO\u001b[0m[202...`
-* **[1 occurrences]** `"\u001b[36mINFO\u001b[0m[2026-09-07T19:48:27Z] Selecting nodes ...                           \u001b[36mINFO\u001b[0m[202...`
-* **[1 occurrences]** `"\u001b[36mINFO\u001b[0m[2026-09-07T19:47:57Z] Selecting nodes ...                           \u001b[36mINFO\u001b[0m[202...`
-* **[1 occurrences]** `"\u001b[36mINFO\u001b[0m[2026-09-07T19:47:48Z] Selecting nodes ...                           \u001b[36mINFO\u001b[0m[202...`
-* **[1 occurrences]** `"\u001b[36mINFO\u001b[0m[2026-09-07T19:47:30Z] Selecting nodes ...                           \u001b[36mINFO\u001b[0m[202...`
-* **[1 occurrences]** `"\u001b[36mINFO\u001b[0m[2026-09-07T19:46:46Z] Selecting nodes ...                           \u001b[36mINFO\u001b[0m[202...`
-* **[1 occurrences]** `"\u001b[36mINFO\u001b[0m[2026-09-07T19:45:49Z] Selecting nodes ...                           \u001b[36mINFO\u001b[0m[202...`
-* **[1 occurrences]** `"\u001b[36mINFO\u001b[0m[2026-09-07T19:45:04Z] Selecting nodes ...                           \u001b[36mINFO\u001b[0m[202...`
-* **[1 occurrences]** `"\u001b[36mINFO\u001b[0m[2026-09-07T19:44:08Z] Selecting nodes ...                           \u001b[36mINFO\u001b[0m[202...`
-* **[1 occurrences]** `"\u001b[36mINFO\u001b[0m[2026-09-07T19:43:29Z] Selecting nodes ...                           \u001b[36mINFO\u001b[0m[202...`
-* **[1 occurrences]** `"\u001b[36mINFO\u001b[0m[2026-09-07T19:42:40Z] Selecting nodes ...                           \u001b[36mINFO\u001b[0m[202...`
-* **[1 occurrences]** `"\u001b[36mINFO\u001b[0m[2026-09-07T19:42:39Z] Selecting nodes ...                           \u001b[36mINFO\u001b[0m[202...`
-* **[1 occurrences]** `"\u001b[36mINFO\u001b[0m[2026-09-07T19:42:25Z] Selecting nodes ...                           \u001b[36mINFO\u001b[0m[202...`
-* **[1 occurrences]** `"\u001b[36mINFO\u001b[0m[2026-09-07T19:41:49Z] Selecting nodes ...                           \u001b[36mINFO\u001b[0m[202...`
-* **[1 occurrences]** `"\u001b[36mINFO\u001b[0m[2026-09-07T19:40:54Z] Selecting nodes ...                           \u001b[36mINFO\u001b[0m[202...`
-* **[1 occurrences]** `"\u001b[36mINFO\u001b[0m[2026-09-07T19:40:10Z] Selecting nodes ...                           \u001b[36mINFO\u001b[0m[202...`
-* **[1 occurrences]** `"\u001b[36mINFO\u001b[0m[2026-09-07T19:39:12Z] Selecting nodes ...                           \u001b[36mINFO\u001b[0m[202...`
-* **[1 occurrences]** `"\u001b[36mINFO\u001b[0m[2026-09-07T19:38:29Z] Selecting nodes ...                           \u001b[36mINFO\u001b[0m[202...`
-* **[1 occurrences]** `"\u001b[36mINFO\u001b[0m[2026-09-07T19:37:29Z] Selecting nodes ...                           \u001b[36mINFO\u001b[0m[202...`
-* **[1 occurrences]** `"\u001b[36mINFO\u001b[0m[2026-09-07T19:36:52Z] Selecting nodes ...                           \u001b[36mINFO\u001b[0m[202...`
-* **[1 occurrences]** `"\u001b[36mINFO\u001b[0m[2026-09-07T19:35:49Z] Selecting nodes ...                           \u001b[36mINFO\u001b[0m[202...`
-* **[1 occurrences]** `"\u001b[36mINFO\u001b[0m[2026-09-07T19:35:19Z] Selecting nodes ...                           \u001b[36mINFO\u001b[0m[202...`
-* **[1 occurrences]** `"\u001b[36mINFO\u001b[0m[2026-09-07T19:34:09Z] Selecting nodes ...                           \u001b[36mINFO\u001b[0m[202...`
-* **[1 occurrences]** `"\u001b[36mINFO\u001b[0m[2026-09-07T19:33:47Z] Selecting nodes ...                           \u001b[36mINFO\u001b[0m[202...`
-* **[1 occurrences]** `"\u001b[36mINFO\u001b[0m[2026-09-07T19:32:24Z] Selecting nodes ...                           \u001b[36mINFO\u001b[0m[202...`
-* **[1 occurrences]** `"\u001b[36mINFO\u001b[0m[2026-09-07T19:32:04Z] Selecting nodes ...                           \u001b[36mINFO\u001b[0m[202...`
-* **[1 occurrences]** `"\u001b[36mINFO\u001b[0m[2026-09-07T19:31:02Z] Selecting nodes ...                           \u001b[36mINFO\u001b[0m[202...`
-* **[1 occurrences]** `"\u001b[36mINFO\u001b[0m[2026-09-07T19:29:54Z] Selecting nodes ...                           \u001b[36mINFO\u001b[0m[202...`
-* **[1 occurrences]** `"\u001b[36mINFO\u001b[0m[2026-09-07T19:28:31Z] Selecting nodes ...                           \u001b[36mINFO\u001b[0m[202...`
+| Epoch | Chunks | Duration (s) | Successful | Failed | Drop Rate (%) |
+|---|---|---|---|---|---|
+| 1 | 10 | 214.33 | 10 | 0 | 0.0% |
+| 2 | 20 | 480.15 | 20 | 0 | 0.0% |
+| 3 | 30 | 670.11 | 30 | 0 | 0.0% |
+| 4 | 40 | 1394.64 | 40 | 0 | 0.0% |
+| 5 | 50 | 1837.92 | 42 | 8 | 16.0% |
+| 6 | 60 | 1682.41 | 18 | 42 | 70.0% |
 
 ---
 
-## 🛰️ 3. CONCURRENT OPERATORS STATE MATRICES
-Распределение нагрузки по параллельным кошелькам (спутникам):
+## Technical Analysis & Observations
 
-| Satellite ID | Total Attempts | Success | Failed | Status |
-|--------------|----------------|---------|--------|--------|
-| Sat #01 | 28 | 22 | 6 | 🟡 DROPPING |
-| Sat #02 | 28 | 21 | 7 | 🟡 DROPPING |
-| Sat #03 | 28 | 21 | 7 | 🟡 DROPPING |
-| Sat #04 | 28 | 21 | 7 | 🟡 DROPPING |
-| Sat #05 | 28 | 21 | 7 | 🟡 DROPPING |
-| Sat #06 | 28 | 21 | 7 | 🟡 DROPPING |
-| Sat #07 | 28 | 21 | 7 | 🟡 DROPPING |
-| Sat #08 | 28 | 21 | 7 | 🟡 DROPPING |
-| Sat #09 | 28 | 21 | 7 | 🟡 DROPPING |
-| Sat #10 | 28 | 21 | 7 | 🟡 DROPPING |
+1. **Scalability Ceiling (Epochs 1–4)**:
+   * System performance was stable up to Epoch 4 (40 concurrent chunks / 14 GB payload), maintaining a 0% drop rate.
+   * Average processing time per chunk steadily scaled from ~170s in Epoch 1 to ~320s in Epoch 4 due to rising node ingestion load.
+
+2. **Degradation Point (Epoch 5)**:
+   * At 50 concurrent chunks (17.5 GB payload), initial worker failures appeared (16% drop rate).
+   * Failures concentrated heavily on lower-indexed workers (Workers 1–4).
+
+3. **Node Selection Exhaustion (Epoch 6)**:
+   * Severe performance degradation observed in Epoch 6 (70% drop rate).
+   * **Root Cause Error**: Ingestion client stalled during node discovery/selection (`INFO Selecting nodes ...`), resulting in timeouts.
+   * Out of 10 parallel workers, only Worker 10 maintained consistent write access, indicating severe storage/DA node saturation and lockouts across the cluster.
