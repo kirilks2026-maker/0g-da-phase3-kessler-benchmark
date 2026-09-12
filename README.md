@@ -29,6 +29,9 @@ By bypassing EVM execution gas constraints (`--skip-tx`), this harness replicate
 
 ## 🚀 Quick Start & Reproduction
 
+### Prerequisites & Dependencies
+* **Node.js** (v18+)
+* **0G Storage Client Binary:** Compiled `0g-storage-client` executable must be present at `../0g-storage-client/0g-storage-client` (or added to your system PATH).
 ### 1. Installation
 
 ```bash
