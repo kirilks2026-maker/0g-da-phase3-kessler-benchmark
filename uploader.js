@@ -9,13 +9,14 @@ const envPath = fs.existsSync(path.join(__dirname, '.env'))
 
 require('dotenv').config({ path: envPath });
 
-// Конфигурация
-const CLI_PATH = path.join(__dirname, '../0g-storage-client/0g-storage-client');
+// CLI и RPC Настройки
+const CLI_PATH = path.join(__dirname, './0g-storage-client/0g-storage-client');
 const RPC_URL = process.env.RPC_URL || 'https://evmrpc-testnet.0g.ai';
 const INDEXER_URL = process.env.INDEXER_URL || 'https://indexer-storage-testnet-turbo.0g.ai';
-const CHUNK_SIZE_MB = 350;
 
-// Цвета для консоли
+const START_TIME = Date.now();
+
+// Цвета консоли
 const C = {
     cyan: (s) => `\x1b[36m${s}\x1b[0m`,
     green: (s) => `\x1b[32m${s}\x1b[0m`,
@@ -34,36 +35,65 @@ const privateKeys = Object.keys(process.env)
 
 const sleep = (ms) => new Promise(res => setTimeout(res, ms));
 
-// Выделяем 350 МБ в RAM один раз для экономии CPU и исключения ошибок записи
-console.log(C.gray(`⚡ Allocating 350MB base RAM buffer...`));
-const BASE_350MB_BUFFER = Buffer.alloc(CHUNK_SIZE_MB * 1024 * 1024, '0G_PHASE_3_DATA_MULTIPLIER_BASE_SWARM_');
+// Высокоточный таймлайн [+ММ:СС.ммм]
+function getTimelineMark() {
+    const elapsed = Date.now() - START_TIME;
+    const minutes = String(Math.floor(elapsed / 60000)).padStart(2, '0');
+    const seconds = String(Math.floor((elapsed % 60000) / 1000)).padStart(2, '0');
+    const ms = String(elapsed % 1000).padStart(3, '0');
+    return `[+${minutes}:${seconds}.${ms}]`;
+}
 
-function generateMutatedFile(filePath) {
+// Форматирование логов в ровный столбик
+function formatLog(workerId, tag, status, details, colorFn) {
+    const timeMark = getTimelineMark();
+    const pWorker = String(workerId).padStart(2, '0');
+    const pTag = String(tag).padEnd(8, ' ');
+    const pStatus = String(status).padEnd(9, ' ');
+    const rawLine = `${timeMark} [Worker #${pWorker} | Tag ${pTag}] ${pStatus}: ${details}`;
+    return colorFn ? colorFn(rawLine) : rawLine;
+}
+
+// Буфер и генерация уникальных файлов (Anti-Compression + Unique Merkle Root)
+let currentAllocatedSizeMB = 0;
+let BASE_BUFFER = null;
+
+function ensureBufferAllocation(targetSizeMB) {
+    if (currentAllocatedSizeMB !== targetSizeMB) {
+        console.log(C.gray(`${getTimelineMark()} ⚡ Allocating dynamic ${targetSizeMB}MB RAM buffer (Anti-Compression pattern)...`));
+        // Заполняем рандомом для защиты от алгоритмов сжатия (gzip/zstd)
+        BASE_BUFFER = crypto.randomBytes(targetSizeMB * 1024 * 1024);
+        currentAllocatedSizeMB = targetSizeMB;
+    }
+}
+
+function generateMutatedFile(filePath, sizeMB) {
+    ensureBufferAllocation(sizeMB);
     const fd = fs.openSync(filePath, 'w');
-    fs.writeSync(fd, BASE_350MB_BUFFER, 0, BASE_350MB_BUFFER.length);
-    fs.writeSync(fd, crypto.randomBytes(16));
+    fs.writeSync(fd, BASE_BUFFER, 0, BASE_BUFFER.length);
+    fs.writeSync(fd, crypto.randomBytes(16)); // Уникальный хвост против дедупликации
     fs.closeSync(fd);
 }
 
 const benchmarkReport = {
     timestamp: new Date().toISOString(),
-    framework_phase: "Phase-3 (Direct DA Ingestion Marathon)",
-    chunk_size_mb: CHUNK_SIZE_MB,
+    framework_phase: "Phase-4 (Adaptive Dynamic Load Profiler)",
     summary: {
         total_success_txs: 0,
         total_failed_txs: 0,
-        total_payload_uploaded_mb: 0
+        total_payload_uploaded_mb: 0,
+        failure_threshold_chunk_mb: null
     },
     epochs: []
 };
 
-async function uploadBatchAsync(workerIndex, key, tag) {
+async function uploadBatchAsync(workerIndex, key, tag, chunkSizeMB) {
     const workerId = workerIndex + 1;
     const fileName = `dummy_w${workerId}_t${tag}.tmp`;
     const filePath = path.join(__dirname, fileName);
 
     try {
-        generateMutatedFile(filePath);
+        generateMutatedFile(filePath, chunkSizeMB);
         const cmd = `${CLI_PATH} upload --url ${RPC_URL} --indexer ${INDEXER_URL} --key ${key} --file ${filePath} --skip-tx`;
 
         return new Promise((resolve) => {
@@ -74,34 +104,37 @@ async function uploadBatchAsync(workerIndex, key, tag) {
 
                 if (error) {
                     const errLine = (stderr || error.message).split('\n')[0];
-                    console.log(C.red(`   [Worker #${workerId} | Tag ${tag}] Failed: ${errLine}`));
-                    resolve({ success: false, workerId, timeSec, error: errLine });
+                    console.log(formatLog(workerId, tag, "Failed", errLine, C.red));
+                    resolve({ success: false, workerId, timeSec, error: errLine, chunkSizeMB });
                 } else {
-                    console.log(C.green(`   [Worker #${workerId} | Tag ${tag}] Ingested 350MB in ${timeSec}s`));
-                    resolve({ success: true, workerId, timeSec });
+                    console.log(formatLog(workerId, tag, "Ingested", `${chunkSizeMB}MB in ${timeSec}s`, C.green));
+                    resolve({ success: true, workerId, timeSec, chunkSizeMB });
                 }
             });
         });
     } catch (e) {
         if (fs.existsSync(filePath)) fs.unlinkSync(filePath);
-        return { success: false, workerId, error: e.message };
+        return { success: false, workerId, error: e.message, chunkSizeMB };
     }
 }
 
-async function startLiveSwarm() {
-    console.log(C.bold(C.cyan(`\n🚀 [Phase 3] Starting Kessler Cascade (Direct Ingestion Marathon)`)));
-    console.log(C.cyan(`📊 Configuration: ${privateKeys.length} Workers | 350MB per chunk | Replicating Phase 2 Cascade\n`));
+async function startAdaptiveSwarm() {
+    console.log(C.bold(C.cyan(`\n🚀 [Phase 4] Starting Dynamic Adaptive Load Profiler`)));
+    console.log(C.cyan(`📊 Configuration: ${privateKeys.length} Workers | Dynamic Scaling (50MB ➔ 500MB)\n`));
     
     if (privateKeys.length === 0) {
-        console.log(C.red('❌ No valid 64-character private keys found in .env!'));
+        console.log(C.red(`${getTimelineMark()} ❌ No valid 64-character private keys found in .env!`));
         return;
     }
 
-    const multiplier = 10;
+    let chunkSizeMB = 50; 
+    const chunkSizeStepMB = 50;
+    const maxChunkSizeMB = 500;
+    let epoch = 1;
 
-    for (let epoch = 1; epoch <= 10; epoch++) {
-        const totalChunksInEpoch = epoch * multiplier; 
-        console.log(C.bold(C.yellow(`\n➔ 🧭 Running Epoch x${epoch} [Target: ${totalChunksInEpoch} Chunks (${(totalChunksInEpoch * CHUNK_SIZE_MB / 1024).toFixed(1)} GB) | Simultaneity Burst]`)));
+    while (chunkSizeMB <= maxChunkSizeMB) {
+        const totalChunksInEpoch = privateKeys.length * 2;
+        console.log(C.bold(C.yellow(`\n➔ 🧭 Epoch x${epoch} [Step: ${chunkSizeMB}MB/chunk | Load: ${totalChunksInEpoch} Chunks (${(totalChunksInEpoch * chunkSizeMB / 1024).toFixed(2)} GB)]`)));
         
         const epochStart = Date.now();
         let successfulChunks = 0;
@@ -113,7 +146,7 @@ async function startLiveSwarm() {
             const activeWorkers = Math.min(privateKeys.length, totalChunksInEpoch - chunkIndex);
 
             for (let i = 0; i < activeWorkers; i++) {
-                tasks.push(uploadBatchAsync(i, privateKeys[i], `${epoch}_c${chunkIndex + i}`));
+                tasks.push(uploadBatchAsync(i, privateKeys[i], `${epoch}_c${chunkIndex + i}`, chunkSizeMB));
                 await sleep(300);
             }
 
@@ -124,10 +157,6 @@ async function startLiveSwarm() {
                 if (r.success) successfulChunks++;
                 else failedChunks++;
             });
-
-            if (totalChunksInEpoch > privateKeys.length) {
-                console.log(C.gray(`   [Progress] Ingested ${successfulChunks}/${totalChunksInEpoch} chunks...`));
-            }
         }
 
         const epochTimeSec = parseFloat(((Date.now() - epochStart) / 1000).toFixed(2));
@@ -135,6 +164,7 @@ async function startLiveSwarm() {
 
         benchmarkReport.epochs.push({
             epoch: epoch,
+            chunk_size_mb: chunkSizeMB,
             total_chunks: totalChunksInEpoch,
             duration_sec: epochTimeSec,
             successful: successfulChunks,
@@ -145,14 +175,18 @@ async function startLiveSwarm() {
 
         benchmarkReport.summary.total_success_txs += successfulChunks;
         benchmarkReport.summary.total_failed_txs += failedChunks;
-        benchmarkReport.summary.total_payload_uploaded_mb += (successfulChunks * CHUNK_SIZE_MB);
+        benchmarkReport.summary.total_payload_uploaded_mb += (successfulChunks * chunkSizeMB);
 
-        console.log(C.bold(`📈 Epoch x${epoch} Finished: ${successfulChunks} OK / ${failedChunks} Failed | Duration: ${epochTimeSec}s | Drop Rate: ${dropRate}%`));
+        console.log(C.bold(`${getTimelineMark()} 📈 Epoch x${epoch} (${chunkSizeMB}MB) Finished: ${successfulChunks} OK / ${failedChunks} Failed | Duration: ${epochTimeSec}s | Drop Rate: ${dropRate}%`));
 
         if (dropRate > 30.0) {
-            console.log(C.bold(C.red(`\n🛑 [Circuit Breaker] Drop Rate reached ${dropRate}%! Triggering emergency shutdown...`)));
+            benchmarkReport.summary.failure_threshold_chunk_mb = chunkSizeMB;
+            console.log(C.bold(C.red(`\n🛑 [Circuit Breaker] Failure Threshold Discovered at ${chunkSizeMB}MB per chunk! (Drop Rate: ${dropRate}%)`)));
             break;
         }
+
+        chunkSizeMB += chunkSizeStepMB;
+        epoch++;
     }
 
     const reportPathLocal = path.join(__dirname, 'benchmark_detailed_report.json');
@@ -165,7 +199,7 @@ async function startLiveSwarm() {
     console.log(C.bold(C.cyan(`\n💾 Benchmarking complete. Telemetry saved to:`)));
     console.log(C.gray(`   - ${reportPathLocal}`));
     console.log(C.gray(`   - ${reportPathRoot}`));
-    console.log(C.bold(C.green(`🏁 Total Data Successfully Ingested to 0G DA: ${benchmarkReport.summary.total_payload_uploaded_mb} MB\n`)));
+    console.log(C.bold(C.green(`🏁 Dynamic Profiling Complete. Total Ingested: ${benchmarkReport.summary.total_payload_uploaded_mb} MB\n`)));
 }
 
-startLiveSwarm();
+startAdaptiveSwarm();
