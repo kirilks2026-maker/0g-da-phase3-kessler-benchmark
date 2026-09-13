@@ -1,151 +1,1170 @@
 {
-    "timestamp": "2026-09-12T20:45:41.052Z",
-    "framework_phase": "Phase-4 (Adaptive Dynamic Load Profiler)",
+    "timestamp": "2026-09-10T09:36:27.741Z",
+    "framework_phase": "Phase-3 (Direct DA Ingestion Marathon)",
+    "chunk_size_mb": 350,
     "summary": {
-        "total_success_txs": 10,
-        "total_failed_txs": 10,
-        "total_payload_uploaded_mb": 500,
-        "failure_threshold_chunk_mb": 50
+        "total_success_txs": 160,
+        "total_failed_txs": 50,
+        "total_payload_uploaded_mb": 56000
     },
     "epochs": [
         {
             "epoch": 1,
-            "chunk_size_mb": 50,
-            "total_chunks": 20,
-            "duration_sec": 69.76,
+            "total_chunks": 10,
+            "duration_sec": 214.33,
             "successful": 10,
-            "failed": 10,
-            "drop_rate_percent": 50,
+            "failed": 0,
+            "drop_rate_percent": 0,
+            "details": [
+                {
+                    "success": true,
+                    "workerId": 1,
+                    "timeSec": 214.12
+                },
+                {
+                    "success": true,
+                    "workerId": 2,
+                    "timeSec": 184.42
+                },
+                {
+                    "success": true,
+                    "workerId": 3,
+                    "timeSec": 186.59
+                },
+                {
+                    "success": true,
+                    "workerId": 4,
+                    "timeSec": 179.21
+                },
+                {
+                    "success": true,
+                    "workerId": 5,
+                    "timeSec": 172.36
+                },
+                {
+                    "success": true,
+                    "workerId": 6,
+                    "timeSec": 162.73
+                },
+                {
+                    "success": true,
+                    "workerId": 7,
+                    "timeSec": 145.19
+                },
+                {
+                    "success": true,
+                    "workerId": 8,
+                    "timeSec": 133.3
+                },
+                {
+                    "success": true,
+                    "workerId": 9,
+                    "timeSec": 168.72
+                },
+                {
+                    "success": true,
+                    "workerId": 10,
+                    "timeSec": 134.8
+                }
+            ]
+        },
+        {
+            "epoch": 2,
+            "total_chunks": 20,
+            "duration_sec": 480.15,
+            "successful": 20,
+            "failed": 0,
+            "drop_rate_percent": 0,
+            "details": [
+                {
+                    "success": true,
+                    "workerId": 1,
+                    "timeSec": 208.78
+                },
+                {
+                    "success": true,
+                    "workerId": 2,
+                    "timeSec": 225.49
+                },
+                {
+                    "success": true,
+                    "workerId": 3,
+                    "timeSec": 226
+                },
+                {
+                    "success": true,
+                    "workerId": 4,
+                    "timeSec": 204.5
+                },
+                {
+                    "success": true,
+                    "workerId": 5,
+                    "timeSec": 238.36
+                },
+                {
+                    "success": true,
+                    "workerId": 6,
+                    "timeSec": 234.44
+                },
+                {
+                    "success": true,
+                    "workerId": 7,
+                    "timeSec": 231.38
+                },
+                {
+                    "success": true,
+                    "workerId": 8,
+                    "timeSec": 154
+                },
+                {
+                    "success": true,
+                    "workerId": 9,
+                    "timeSec": 131.76
+                },
+                {
+                    "success": true,
+                    "workerId": 10,
+                    "timeSec": 118.46
+                },
+                {
+                    "success": true,
+                    "workerId": 1,
+                    "timeSec": 176.81
+                },
+                {
+                    "success": true,
+                    "workerId": 2,
+                    "timeSec": 194.32
+                },
+                {
+                    "success": true,
+                    "workerId": 3,
+                    "timeSec": 187.78
+                },
+                {
+                    "success": true,
+                    "workerId": 4,
+                    "timeSec": 176.93
+                },
+                {
+                    "success": true,
+                    "workerId": 5,
+                    "timeSec": 173.53
+                },
+                {
+                    "success": true,
+                    "workerId": 6,
+                    "timeSec": 159.88
+                },
+                {
+                    "success": true,
+                    "workerId": 7,
+                    "timeSec": 158.39
+                },
+                {
+                    "success": true,
+                    "workerId": 8,
+                    "timeSec": 157.82
+                },
+                {
+                    "success": true,
+                    "workerId": 9,
+                    "timeSec": 178.97
+                },
+                {
+                    "success": true,
+                    "workerId": 10,
+                    "timeSec": 175.51
+                }
+            ]
+        },
+        {
+            "epoch": 3,
+            "total_chunks": 30,
+            "duration_sec": 670.11,
+            "successful": 30,
+            "failed": 0,
+            "drop_rate_percent": 0,
+            "details": [
+                {
+                    "success": true,
+                    "workerId": 1,
+                    "timeSec": 187.39
+                },
+                {
+                    "success": true,
+                    "workerId": 2,
+                    "timeSec": 187.72
+                },
+                {
+                    "success": true,
+                    "workerId": 3,
+                    "timeSec": 219.58
+                },
+                {
+                    "success": true,
+                    "workerId": 4,
+                    "timeSec": 213.66
+                },
+                {
+                    "success": true,
+                    "workerId": 5,
+                    "timeSec": 208.4
+                },
+                {
+                    "success": true,
+                    "workerId": 6,
+                    "timeSec": 172.76
+                },
+                {
+                    "success": true,
+                    "workerId": 7,
+                    "timeSec": 144.21
+                },
+                {
+                    "success": true,
+                    "workerId": 8,
+                    "timeSec": 143.36
+                },
+                {
+                    "success": true,
+                    "workerId": 9,
+                    "timeSec": 139.61
+                },
+                {
+                    "success": true,
+                    "workerId": 10,
+                    "timeSec": 102.24
+                },
+                {
+                    "success": true,
+                    "workerId": 1,
+                    "timeSec": 226.75
+                },
+                {
+                    "success": true,
+                    "workerId": 2,
+                    "timeSec": 232
+                },
+                {
+                    "success": true,
+                    "workerId": 3,
+                    "timeSec": 233.75
+                },
+                {
+                    "success": true,
+                    "workerId": 4,
+                    "timeSec": 223.3
+                },
+                {
+                    "success": true,
+                    "workerId": 5,
+                    "timeSec": 185.15
+                },
+                {
+                    "success": true,
+                    "workerId": 6,
+                    "timeSec": 159.71
+                },
+                {
+                    "success": true,
+                    "workerId": 7,
+                    "timeSec": 175.49
+                },
+                {
+                    "success": true,
+                    "workerId": 8,
+                    "timeSec": 193.52
+                },
+                {
+                    "success": true,
+                    "workerId": 9,
+                    "timeSec": 171.57
+                },
+                {
+                    "success": true,
+                    "workerId": 10,
+                    "timeSec": 184.01
+                },
+                {
+                    "success": true,
+                    "workerId": 1,
+                    "timeSec": 185.03
+                },
+                {
+                    "success": true,
+                    "workerId": 2,
+                    "timeSec": 178.03
+                },
+                {
+                    "success": true,
+                    "workerId": 3,
+                    "timeSec": 187.8
+                },
+                {
+                    "success": true,
+                    "workerId": 4,
+                    "timeSec": 175.98
+                },
+                {
+                    "success": true,
+                    "workerId": 5,
+                    "timeSec": 171.05
+                },
+                {
+                    "success": true,
+                    "workerId": 6,
+                    "timeSec": 165.92
+                },
+                {
+                    "success": true,
+                    "workerId": 7,
+                    "timeSec": 165.72
+                },
+                {
+                    "success": true,
+                    "workerId": 8,
+                    "timeSec": 156.54
+                },
+                {
+                    "success": true,
+                    "workerId": 9,
+                    "timeSec": 142.35
+                },
+                {
+                    "success": true,
+                    "workerId": 10,
+                    "timeSec": 102.55
+                }
+            ]
+        },
+        {
+            "epoch": 4,
+            "total_chunks": 40,
+            "duration_sec": 1394.64,
+            "successful": 40,
+            "failed": 0,
+            "drop_rate_percent": 0,
+            "details": [
+                {
+                    "success": true,
+                    "workerId": 1,
+                    "timeSec": 290.83
+                },
+                {
+                    "success": true,
+                    "workerId": 2,
+                    "timeSec": 299.17
+                },
+                {
+                    "success": true,
+                    "workerId": 3,
+                    "timeSec": 292.82
+                },
+                {
+                    "success": true,
+                    "workerId": 4,
+                    "timeSec": 308.8
+                },
+                {
+                    "success": true,
+                    "workerId": 5,
+                    "timeSec": 278.43
+                },
+                {
+                    "success": true,
+                    "workerId": 6,
+                    "timeSec": 310.19
+                },
+                {
+                    "success": true,
+                    "workerId": 7,
+                    "timeSec": 252.76
+                },
+                {
+                    "success": true,
+                    "workerId": 8,
+                    "timeSec": 255.78
+                },
+                {
+                    "success": true,
+                    "workerId": 9,
+                    "timeSec": 247.48
+                },
+                {
+                    "success": true,
+                    "workerId": 10,
+                    "timeSec": 239.77
+                },
+                {
+                    "success": true,
+                    "workerId": 1,
+                    "timeSec": 329.29
+                },
+                {
+                    "success": true,
+                    "workerId": 2,
+                    "timeSec": 325.63
+                },
+                {
+                    "success": true,
+                    "workerId": 3,
+                    "timeSec": 327.28
+                },
+                {
+                    "success": true,
+                    "workerId": 4,
+                    "timeSec": 322.55
+                },
+                {
+                    "success": true,
+                    "workerId": 5,
+                    "timeSec": 320.01
+                },
+                {
+                    "success": true,
+                    "workerId": 6,
+                    "timeSec": 260.1
+                },
+                {
+                    "success": true,
+                    "workerId": 7,
+                    "timeSec": 307.54
+                },
+                {
+                    "success": true,
+                    "workerId": 8,
+                    "timeSec": 305.07
+                },
+                {
+                    "success": true,
+                    "workerId": 9,
+                    "timeSec": 296.71
+                },
+                {
+                    "success": true,
+                    "workerId": 10,
+                    "timeSec": 261.53
+                },
+                {
+                    "success": true,
+                    "workerId": 1,
+                    "timeSec": 326.82
+                },
+                {
+                    "success": true,
+                    "workerId": 2,
+                    "timeSec": 323.9
+                },
+                {
+                    "success": true,
+                    "workerId": 3,
+                    "timeSec": 315.94
+                },
+                {
+                    "success": true,
+                    "workerId": 4,
+                    "timeSec": 319.57
+                },
+                {
+                    "success": true,
+                    "workerId": 5,
+                    "timeSec": 280.73
+                },
+                {
+                    "success": true,
+                    "workerId": 6,
+                    "timeSec": 302.88
+                },
+                {
+                    "success": true,
+                    "workerId": 7,
+                    "timeSec": 318.92
+                },
+                {
+                    "success": true,
+                    "workerId": 8,
+                    "timeSec": 299.13
+                },
+                {
+                    "success": true,
+                    "workerId": 9,
+                    "timeSec": 209.82
+                },
+                {
+                    "success": true,
+                    "workerId": 10,
+                    "timeSec": 266.47
+                },
+                {
+                    "success": true,
+                    "workerId": 1,
+                    "timeSec": 379.57
+                },
+                {
+                    "success": true,
+                    "workerId": 2,
+                    "timeSec": 387.66
+                },
+                {
+                    "success": true,
+                    "workerId": 3,
+                    "timeSec": 380.5
+                },
+                {
+                    "success": true,
+                    "workerId": 4,
+                    "timeSec": 362.65
+                },
+                {
+                    "success": true,
+                    "workerId": 5,
+                    "timeSec": 371.03
+                },
+                {
+                    "success": true,
+                    "workerId": 6,
+                    "timeSec": 371.63
+                },
+                {
+                    "success": true,
+                    "workerId": 7,
+                    "timeSec": 356.74
+                },
+                {
+                    "success": true,
+                    "workerId": 8,
+                    "timeSec": 351.76
+                },
+                {
+                    "success": true,
+                    "workerId": 9,
+                    "timeSec": 353.24
+                },
+                {
+                    "success": true,
+                    "workerId": 10,
+                    "timeSec": 298.96
+                }
+            ]
+        },
+        {
+            "epoch": 5,
+            "total_chunks": 50,
+            "duration_sec": 1837.92,
+            "successful": 42,
+            "failed": 8,
+            "drop_rate_percent": 16,
+            "details": [
+                {
+                    "success": true,
+                    "workerId": 1,
+                    "timeSec": 392.61
+                },
+                {
+                    "success": true,
+                    "workerId": 2,
+                    "timeSec": 397.43
+                },
+                {
+                    "success": true,
+                    "workerId": 3,
+                    "timeSec": 393.06
+                },
+                {
+                    "success": true,
+                    "workerId": 4,
+                    "timeSec": 391.41
+                },
+                {
+                    "success": true,
+                    "workerId": 5,
+                    "timeSec": 370.37
+                },
+                {
+                    "success": true,
+                    "workerId": 6,
+                    "timeSec": 351.4
+                },
+                {
+                    "success": true,
+                    "workerId": 7,
+                    "timeSec": 339.05
+                },
+                {
+                    "success": true,
+                    "workerId": 8,
+                    "timeSec": 336.37
+                },
+                {
+                    "success": true,
+                    "workerId": 9,
+                    "timeSec": 352.8
+                },
+                {
+                    "success": true,
+                    "workerId": 10,
+                    "timeSec": 340.11
+                },
+                {
+                    "success": true,
+                    "workerId": 1,
+                    "timeSec": 318.92
+                },
+                {
+                    "success": true,
+                    "workerId": 2,
+                    "timeSec": 352.06
+                },
+                {
+                    "success": true,
+                    "workerId": 3,
+                    "timeSec": 378.94
+                },
+                {
+                    "success": true,
+                    "workerId": 4,
+                    "timeSec": 337.22
+                },
+                {
+                    "success": true,
+                    "workerId": 5,
+                    "timeSec": 367.25
+                },
+                {
+                    "success": true,
+                    "workerId": 6,
+                    "timeSec": 314.19
+                },
+                {
+                    "success": true,
+                    "workerId": 7,
+                    "timeSec": 357
+                },
+                {
+                    "success": true,
+                    "workerId": 8,
+                    "timeSec": 330.77
+                },
+                {
+                    "success": true,
+                    "workerId": 9,
+                    "timeSec": 254.94
+                },
+                {
+                    "success": true,
+                    "workerId": 10,
+                    "timeSec": 319.68
+                },
+                {
+                    "success": false,
+                    "workerId": 1,
+                    "timeSec": 152.36,
+                    "error": "\u001b[36mINFO\u001b[0m[2026-09-10T10:35:34Z] Selecting nodes ...                          "
+                },
+                {
+                    "success": false,
+                    "workerId": 2,
+                    "timeSec": 152.12,
+                    "error": "\u001b[36mINFO\u001b[0m[2026-09-10T10:35:42Z] Selecting nodes ...                          "
+                },
+                {
+                    "success": true,
+                    "workerId": 3,
+                    "timeSec": 343.13
+                },
+                {
+                    "success": true,
+                    "workerId": 4,
+                    "timeSec": 337.74
+                },
+                {
+                    "success": true,
+                    "workerId": 5,
+                    "timeSec": 298.67
+                },
+                {
+                    "success": true,
+                    "workerId": 6,
+                    "timeSec": 298.07
+                },
+                {
+                    "success": true,
+                    "workerId": 7,
+                    "timeSec": 307.74
+                },
+                {
+                    "success": true,
+                    "workerId": 8,
+                    "timeSec": 313.17
+                },
+                {
+                    "success": true,
+                    "workerId": 9,
+                    "timeSec": 310.48
+                },
+                {
+                    "success": true,
+                    "workerId": 10,
+                    "timeSec": 304.13
+                },
+                {
+                    "success": false,
+                    "workerId": 1,
+                    "timeSec": 157.64,
+                    "error": "\u001b[36mINFO\u001b[0m[2026-09-10T10:41:24Z] Selecting nodes ...                          "
+                },
+                {
+                    "success": false,
+                    "workerId": 2,
+                    "timeSec": 158.06,
+                    "error": "\u001b[36mINFO\u001b[0m[2026-09-10T10:41:30Z] Selecting nodes ...                          "
+                },
+                {
+                    "success": true,
+                    "workerId": 3,
+                    "timeSec": 336.22
+                },
+                {
+                    "success": true,
+                    "workerId": 4,
+                    "timeSec": 346.89
+                },
+                {
+                    "success": true,
+                    "workerId": 5,
+                    "timeSec": 305.57
+                },
+                {
+                    "success": true,
+                    "workerId": 6,
+                    "timeSec": 299.38
+                },
+                {
+                    "success": true,
+                    "workerId": 7,
+                    "timeSec": 297.45
+                },
+                {
+                    "success": true,
+                    "workerId": 8,
+                    "timeSec": 310.7
+                },
+                {
+                    "success": true,
+                    "workerId": 9,
+                    "timeSec": 283.61
+                },
+                {
+                    "success": true,
+                    "workerId": 10,
+                    "timeSec": 298.27
+                },
+                {
+                    "success": false,
+                    "workerId": 1,
+                    "timeSec": 181.41,
+                    "error": "\u001b[36mINFO\u001b[0m[2026-09-10T10:47:22Z] Selecting nodes ...                          "
+                },
+                {
+                    "success": false,
+                    "workerId": 2,
+                    "timeSec": 173.81,
+                    "error": "\u001b[36mINFO\u001b[0m[2026-09-10T10:47:24Z] Selecting nodes ...                          "
+                },
+                {
+                    "success": false,
+                    "workerId": 3,
+                    "timeSec": 170.52,
+                    "error": "\u001b[36mINFO\u001b[0m[2026-09-10T10:47:27Z] Selecting nodes ...                          "
+                },
+                {
+                    "success": false,
+                    "workerId": 4,
+                    "timeSec": 171.66,
+                    "error": "\u001b[36mINFO\u001b[0m[2026-09-10T10:47:34Z] Selecting nodes ...                          "
+                },
+                {
+                    "success": true,
+                    "workerId": 5,
+                    "timeSec": 286.5
+                },
+                {
+                    "success": true,
+                    "workerId": 6,
+                    "timeSec": 286.31
+                },
+                {
+                    "success": true,
+                    "workerId": 7,
+                    "timeSec": 300.48
+                },
+                {
+                    "success": true,
+                    "workerId": 8,
+                    "timeSec": 304.05
+                },
+                {
+                    "success": true,
+                    "workerId": 9,
+                    "timeSec": 285.81
+                },
+                {
+                    "success": true,
+                    "workerId": 10,
+                    "timeSec": 294.35
+                }
+            ]
+        },
+        {
+            "epoch": 6,
+            "total_chunks": 60,
+            "duration_sec": 1682.41,
+            "successful": 18,
+            "failed": 42,
+            "drop_rate_percent": 70,
             "details": [
                 {
                     "success": false,
                     "workerId": 1,
-                    "timeSec": 18.54,
-                    "error": "\u001b[36mINFO\u001b[0m[2026-09-12T20:45:41Z] Selecting nodes ...                          ",
-                    "chunkSizeMB": 50
+                    "timeSec": 187.81,
+                    "error": "\u001b[36mINFO\u001b[0m[2026-09-10T10:53:05Z] Selecting nodes ...                          "
                 },
                 {
-                    "success": true,
+                    "success": false,
                     "workerId": 2,
-                    "timeSec": 26.88,
-                    "chunkSizeMB": 50
+                    "timeSec": 187.36,
+                    "error": "\u001b[36mINFO\u001b[0m[2026-09-10T10:53:07Z] Selecting nodes ...                          "
                 },
                 {
                     "success": false,
                     "workerId": 3,
-                    "timeSec": 17.99,
-                    "error": "\u001b[36mINFO\u001b[0m[2026-09-12T20:45:41Z] Selecting nodes ...                          ",
-                    "chunkSizeMB": 50
-                },
-                {
-                    "success": true,
-                    "workerId": 4,
-                    "timeSec": 26.37,
-                    "chunkSizeMB": 50
+                    "timeSec": 183.68,
+                    "error": "\u001b[36mINFO\u001b[0m[2026-09-10T10:53:11Z] Selecting nodes ...                          "
                 },
                 {
                     "success": false,
+                    "workerId": 4,
+                    "timeSec": 165.01,
+                    "error": "\u001b[36mINFO\u001b[0m[2026-09-10T10:53:17Z] Selecting nodes ...                          "
+                },
+                {
+                    "success": true,
                     "workerId": 5,
-                    "timeSec": 18.08,
-                    "error": "\u001b[36mINFO\u001b[0m[2026-09-12T20:45:42Z] Selecting nodes ...                          ",
-                    "chunkSizeMB": 50
+                    "timeSec": 288.85
                 },
                 {
                     "success": true,
                     "workerId": 6,
-                    "timeSec": 37.71,
-                    "chunkSizeMB": 50
+                    "timeSec": 284.95
                 },
                 {
                     "success": true,
                     "workerId": 7,
-                    "timeSec": 28.97,
-                    "chunkSizeMB": 50
+                    "timeSec": 274.3
                 },
                 {
                     "success": true,
                     "workerId": 8,
-                    "timeSec": 26.73,
-                    "chunkSizeMB": 50
+                    "timeSec": 296.61
                 },
                 {
-                    "success": false,
+                    "success": true,
                     "workerId": 9,
-                    "timeSec": 16.85,
-                    "error": "\u001b[36mINFO\u001b[0m[2026-09-12T20:45:44Z] Selecting nodes ...                          ",
-                    "chunkSizeMB": 50
+                    "timeSec": 261.22
                 },
                 {
-                    "success": false,
+                    "success": true,
                     "workerId": 10,
-                    "timeSec": 18.09,
-                    "error": "\u001b[36mINFO\u001b[0m[2026-09-12T20:45:45Z] Selecting nodes ...                          ",
-                    "chunkSizeMB": 50
+                    "timeSec": 241.03
                 },
                 {
                     "success": false,
                     "workerId": 1,
-                    "timeSec": 17.81,
-                    "error": "\u001b[36mINFO\u001b[0m[2026-09-12T20:46:20Z] Selecting nodes ...                          ",
-                    "chunkSizeMB": 50
+                    "timeSec": 213.44,
+                    "error": "\u001b[36mINFO\u001b[0m[2026-09-10T10:58:45Z] Selecting nodes ...                          "
                 },
                 {
-                    "success": true,
+                    "success": false,
                     "workerId": 2,
-                    "timeSec": 26.05,
-                    "chunkSizeMB": 50
+                    "timeSec": 210.87,
+                    "error": "\u001b[36mINFO\u001b[0m[2026-09-10T10:58:45Z] Selecting nodes ...                          "
                 },
                 {
                     "success": false,
                     "workerId": 3,
-                    "timeSec": 17.51,
-                    "error": "\u001b[36mINFO\u001b[0m[2026-09-12T20:46:21Z] Selecting nodes ...                          ",
-                    "chunkSizeMB": 50
+                    "timeSec": 204.53,
+                    "error": "\u001b[36mINFO\u001b[0m[2026-09-10T10:58:48Z] Selecting nodes ...                          "
                 },
                 {
-                    "success": true,
+                    "success": false,
                     "workerId": 4,
-                    "timeSec": 27.99,
-                    "chunkSizeMB": 50
+                    "timeSec": 194.93,
+                    "error": "\u001b[36mINFO\u001b[0m[2026-09-10T10:58:50Z] Selecting nodes ...                          "
                 },
                 {
                     "success": false,
                     "workerId": 5,
-                    "timeSec": 17.73,
-                    "error": "\u001b[36mINFO\u001b[0m[2026-09-12T20:46:21Z] Selecting nodes ...                          ",
-                    "chunkSizeMB": 50
+                    "timeSec": 186.66,
+                    "error": "\u001b[36mINFO\u001b[0m[2026-09-10T10:58:54Z] Selecting nodes ...                          "
                 },
                 {
-                    "success": true,
+                    "success": false,
                     "workerId": 6,
-                    "timeSec": 27.21,
-                    "chunkSizeMB": 50
+                    "timeSec": 188.69,
+                    "error": "\u001b[36mINFO\u001b[0m[2026-09-10T10:59:04Z] Selecting nodes ...                          "
                 },
                 {
                     "success": true,
                     "workerId": 7,
-                    "timeSec": 28.04,
-                    "chunkSizeMB": 50
+                    "timeSec": 230.63
                 },
                 {
                     "success": true,
                     "workerId": 8,
-                    "timeSec": 26.24,
-                    "chunkSizeMB": 50
+                    "timeSec": 240.26
+                },
+                {
+                    "success": true,
+                    "workerId": 9,
+                    "timeSec": 220.9
+                },
+                {
+                    "success": true,
+                    "workerId": 10,
+                    "timeSec": 202.05
+                },
+                {
+                    "success": false,
+                    "workerId": 1,
+                    "timeSec": 226.27,
+                    "error": "\u001b[36mINFO\u001b[0m[2026-09-10T11:03:20Z] Selecting nodes ...                          "
+                },
+                {
+                    "success": false,
+                    "workerId": 2,
+                    "timeSec": 203.43,
+                    "error": "\u001b[36mINFO\u001b[0m[2026-09-10T11:03:21Z] Selecting nodes ...                          "
+                },
+                {
+                    "success": false,
+                    "workerId": 3,
+                    "timeSec": 210.72,
+                    "error": "\u001b[36mINFO\u001b[0m[2026-09-10T11:03:25Z] Selecting nodes ...                          "
+                },
+                {
+                    "success": false,
+                    "workerId": 4,
+                    "timeSec": 218.89,
+                    "error": "\u001b[36mINFO\u001b[0m[2026-09-10T11:03:33Z] Selecting nodes ...                          "
+                },
+                {
+                    "success": false,
+                    "workerId": 5,
+                    "timeSec": 211.31,
+                    "error": "\u001b[36mINFO\u001b[0m[2026-09-10T11:03:40Z] Selecting nodes ...                          "
+                },
+                {
+                    "success": false,
+                    "workerId": 6,
+                    "timeSec": 209.79,
+                    "error": "\u001b[36mINFO\u001b[0m[2026-09-10T11:03:43Z] Selecting nodes ...                          "
+                },
+                {
+                    "success": false,
+                    "workerId": 7,
+                    "timeSec": 197.98,
+                    "error": "\u001b[36mINFO\u001b[0m[2026-09-10T11:03:56Z] Selecting nodes ...                          "
+                },
+                {
+                    "success": true,
+                    "workerId": 8,
+                    "timeSec": 232.1
+                },
+                {
+                    "success": true,
+                    "workerId": 9,
+                    "timeSec": 238.94
+                },
+                {
+                    "success": true,
+                    "workerId": 10,
+                    "timeSec": 214.38
+                },
+                {
+                    "success": false,
+                    "workerId": 1,
+                    "timeSec": 232.48,
+                    "error": "\u001b[36mINFO\u001b[0m[2026-09-10T11:08:05Z] Selecting nodes ...                          "
+                },
+                {
+                    "success": false,
+                    "workerId": 2,
+                    "timeSec": 233.44,
+                    "error": "\u001b[36mINFO\u001b[0m[2026-09-10T11:08:08Z] Selecting nodes ...                          "
+                },
+                {
+                    "success": false,
+                    "workerId": 3,
+                    "timeSec": 225.47,
+                    "error": "\u001b[36mINFO\u001b[0m[2026-09-10T11:08:15Z] Selecting nodes ...                          "
+                },
+                {
+                    "success": false,
+                    "workerId": 4,
+                    "timeSec": 210.27,
+                    "error": "\u001b[36mINFO\u001b[0m[2026-09-10T11:08:17Z] Selecting nodes ...                          "
+                },
+                {
+                    "success": false,
+                    "workerId": 5,
+                    "timeSec": 206.19,
+                    "error": "\u001b[36mINFO\u001b[0m[2026-09-10T11:08:23Z] Selecting nodes ...                          "
+                },
+                {
+                    "success": false,
+                    "workerId": 6,
+                    "timeSec": 200.15,
+                    "error": "\u001b[36mINFO\u001b[0m[2026-09-10T11:08:25Z] Selecting nodes ...                          "
+                },
+                {
+                    "success": false,
+                    "workerId": 7,
+                    "timeSec": 207.52,
+                    "error": "\u001b[36mINFO\u001b[0m[2026-09-10T11:08:35Z] Selecting nodes ...                          "
+                },
+                {
+                    "success": false,
+                    "workerId": 8,
+                    "timeSec": 188.75,
+                    "error": "\u001b[36mINFO\u001b[0m[2026-09-10T11:08:39Z] Selecting nodes ...                          "
+                },
+                {
+                    "success": true,
+                    "workerId": 9,
+                    "timeSec": 221.69
+                },
+                {
+                    "success": true,
+                    "workerId": 10,
+                    "timeSec": 208.18
+                },
+                {
+                    "success": false,
+                    "workerId": 1,
+                    "timeSec": 235.15,
+                    "error": "\u001b[36mINFO\u001b[0m[2026-09-10T11:12:30Z] Selecting nodes ...                          "
+                },
+                {
+                    "success": false,
+                    "workerId": 2,
+                    "timeSec": 234.92,
+                    "error": "\u001b[36mINFO\u001b[0m[2026-09-10T11:12:33Z] Selecting nodes ...                          "
+                },
+                {
+                    "success": false,
+                    "workerId": 3,
+                    "timeSec": 230.3,
+                    "error": "\u001b[36mINFO\u001b[0m[2026-09-10T11:12:37Z] Selecting nodes ...                          "
+                },
+                {
+                    "success": false,
+                    "workerId": 4,
+                    "timeSec": 208.94,
+                    "error": "\u001b[36mINFO\u001b[0m[2026-09-10T11:12:42Z] Selecting nodes ...                          "
+                },
+                {
+                    "success": false,
+                    "workerId": 5,
+                    "timeSec": 203.3,
+                    "error": "\u001b[36mINFO\u001b[0m[2026-09-10T11:12:47Z] Selecting nodes ...                          "
+                },
+                {
+                    "success": false,
+                    "workerId": 6,
+                    "timeSec": 213.99,
+                    "error": "\u001b[36mINFO\u001b[0m[2026-09-10T11:12:55Z] Selecting nodes ...                          "
+                },
+                {
+                    "success": false,
+                    "workerId": 7,
+                    "timeSec": 194.18,
+                    "error": "\u001b[36mINFO\u001b[0m[2026-09-10T11:12:58Z] Selecting nodes ...                          "
+                },
+                {
+                    "success": false,
+                    "workerId": 8,
+                    "timeSec": 190.25,
+                    "error": "\u001b[36mINFO\u001b[0m[2026-09-10T11:13:03Z] Selecting nodes ...                          "
+                },
+                {
+                    "success": true,
+                    "workerId": 9,
+                    "timeSec": 205.09
+                },
+                {
+                    "success": true,
+                    "workerId": 10,
+                    "timeSec": 208.25
+                },
+                {
+                    "success": false,
+                    "workerId": 1,
+                    "timeSec": 252.14,
+                    "error": "\u001b[36mINFO\u001b[0m[2026-09-10T11:16:45Z] Selecting nodes ...                          "
+                },
+                {
+                    "success": false,
+                    "workerId": 2,
+                    "timeSec": 247.93,
+                    "error": "\u001b[36mINFO\u001b[0m[2026-09-10T11:16:49Z] Selecting nodes ...                          "
+                },
+                {
+                    "success": false,
+                    "workerId": 3,
+                    "timeSec": 248.17,
+                    "error": "\u001b[36mINFO\u001b[0m[2026-09-10T11:16:53Z] Selecting nodes ...                          "
+                },
+                {
+                    "success": false,
+                    "workerId": 4,
+                    "timeSec": 241.79,
+                    "error": "\u001b[36mINFO\u001b[0m[2026-09-10T11:16:58Z] Selecting nodes ...                          "
+                },
+                {
+                    "success": false,
+                    "workerId": 5,
+                    "timeSec": 238.86,
+                    "error": "\u001b[36mINFO\u001b[0m[2026-09-10T11:17:01Z] Selecting nodes ...                          "
+                },
+                {
+                    "success": false,
+                    "workerId": 6,
+                    "timeSec": 214.86,
+                    "error": "\u001b[36mINFO\u001b[0m[2026-09-10T11:17:05Z] Selecting nodes ...                          "
+                },
+                {
+                    "success": false,
+                    "workerId": 7,
+                    "timeSec": 224.13,
+                    "error": "\u001b[36mINFO\u001b[0m[2026-09-10T11:17:16Z] Selecting nodes ...                          "
+                },
+                {
+                    "success": false,
+                    "workerId": 8,
+                    "timeSec": 203.46,
+                    "error": "\u001b[36mINFO\u001b[0m[2026-09-10T11:17:19Z] Selecting nodes ...                          "
                 },
                 {
                     "success": false,
                     "workerId": 9,
-                    "timeSec": 17.62,
-                    "error": "\u001b[36mINFO\u001b[0m[2026-09-12T20:46:23Z] Selecting nodes ...                          ",
-                    "chunkSizeMB": 50
+                    "timeSec": 195.88,
+                    "error": "\u001b[36mINFO\u001b[0m[2026-09-10T11:17:25Z] Selecting nodes ...                          "
                 },
                 {
-                    "success": false,
+                    "success": true,
                     "workerId": 10,
-                    "timeSec": 16.83,
-                    "error": "\u001b[36mINFO\u001b[0m[2026-09-12T20:46:24Z] Selecting nodes ...                          ",
-                    "chunkSizeMB": 50
+                    "timeSec": 216.31
                 }
             ]
         }
