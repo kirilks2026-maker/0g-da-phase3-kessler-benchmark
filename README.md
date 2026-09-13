@@ -64,15 +64,22 @@ To eliminate any potential background data compression (such as `gzip`/`zstd`) o
 git clone [https://github.com/kirilks2026-maker/0g-da-phase3-kessler-benchmark.git](https://github.com/kirilks2026-maker/0g-da-phase3-kessler-benchmark.git)
 cd 0g-da-phase3-kessler-benchmark
 npm install
+```bash
 
-2. Configuration
+###2. Configuration
+```bash
 Create a .env file based on .env.example:
 cp .env.example .env
+```bash
 
-3. Execution
+###3. Execution
 Run Phase 3 Baseline Benchmark:
+```bash
 node uploader.js
+```bash
 Run Phase 4 Adaptive Profiler:
+```bash
 node uploader_phase4.js
+```bash
 
 Disclaimer: This benchmark is conducted purely for infrastructure research and performance audit purposes on the 0G Galileo Testnet.
