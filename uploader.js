@@ -1,16 +1,16 @@
-import fs from 'fs';
-import path from 'path';
-import { exec } from 'child_process';
-import dotenv from 'dotenv';
-import { fileURLToPath } from 'url';
+const fs = require('fs');
+const path = require('path');
+const { exec } = require('child_process');
+const crypto = require('crypto');
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+const envPath = fs.existsSync(path.join(__dirname, '.env')) 
+    ? path.join(__dirname, '.env') 
+    : path.join(__dirname, '../.env');
 
-dotenv.config();
+require('dotenv').config({ path: envPath });
 
 // Конфигурация
-const CLI_PATH = path.join(__dirname, '../0g-storage-client');
+const CLI_PATH = path.join(__dirname, '../0g-storage-client/0g-storage-client');
 const RPC_URL = process.env.RPC_URL || 'https://evmrpc-testnet.0g.ai';
 const INDEXER_URL = process.env.INDEXER_URL || 'https://indexer-storage-testnet-turbo.0g.ai';
 const CHUNK_SIZE_MB = 350;
@@ -27,16 +27,22 @@ const C = {
 
 // Загрузка приватных ключей воркеров
 const privateKeys = Object.keys(process.env)
-    .filter(k => k.startsWith('PRIVATE_KEY'))
-    .map(k => process.env[k]?.trim())
-    .filter(k => k && k.length === 64);
+    .filter(key => key.startsWith('PRIVATE_KEY_'))
+    .map(key => process.env[key].replace(/['"\r\n\s]/g, '').trim())
+    .map(pk => pk.startsWith('0x') ? pk.slice(2) : pk)
+    .filter(pk => pk.length === 64);
 
 const sleep = (ms) => new Promise(res => setTimeout(res, ms));
 
+// Выделяем 350 МБ в RAM один раз для экономии CPU и исключения ошибок записи
+console.log(C.gray(`⚡ Allocating 350MB base RAM buffer...`));
+const BASE_350MB_BUFFER = Buffer.alloc(CHUNK_SIZE_MB * 1024 * 1024, '0G_PHASE_3_DATA_MULTIPLIER_BASE_SWARM_');
+
 function generateMutatedFile(filePath) {
-    const buffer = Buffer.alloc(CHUNK_SIZE_MB * 1024 * 1024);
-    buffer.fill(Math.floor(Math.random() * 256));
-    fs.writeFileSync(filePath, buffer);
+    const fd = fs.openSync(filePath, 'w');
+    fs.writeSync(fd, BASE_350MB_BUFFER, 0, BASE_350MB_BUFFER.length);
+    fs.writeSync(fd, crypto.randomBytes(16));
+    fs.closeSync(fd);
 }
 
 const benchmarkReport = {
@@ -71,7 +77,7 @@ async function uploadBatchAsync(workerIndex, key, tag) {
                     console.log(C.red(`   [Worker #${workerId} | Tag ${tag}] Failed: ${errLine}`));
                     resolve({ success: false, workerId, timeSec, error: errLine });
                 } else {
-                    console.log(C.green(`   [Worker #${workerId} | Tag ${tag}] Ingested 350MB successfully in ${timeSec}s`));
+                    console.log(C.green(`   [Worker #${workerId} | Tag ${tag}] Ingested 350MB in ${timeSec}s`));
                     resolve({ success: true, workerId, timeSec });
                 }
             });
@@ -91,43 +97,34 @@ async function startLiveSwarm() {
         return;
     }
 
-    const multiplier = 10; // Базовый множитель каскада из Фазы 2
+    const multiplier = 10;
 
-    // Оригинальный каскад Кесслера (Эпохи от 1 до 10)
     for (let epoch = 1; epoch <= 10; epoch++) {
-        // Формула из Фазы 2: общее количество чанков в этой эпохе
         const totalChunksInEpoch = epoch * multiplier; 
-        console.log(C.bold(C.yellow(`\n➔ 🧭 Running Epoch x${epoch} [Target: ${totalChunksInEpoch} Chunks | Simultaneity Burst]`)));
+        console.log(C.bold(C.yellow(`\n➔ 🧭 Running Epoch x${epoch} [Target: ${totalChunksInEpoch} Chunks (${(totalChunksInEpoch * CHUNK_SIZE_MB / 1024).toFixed(1)} GB) | Simultaneity Burst]`)));
         
         const epochStart = Date.now();
         let successfulChunks = 0;
         let failedChunks = 0;
         const epochResults = [];
 
-        // Разбиваем общее количество чанков на параллельные батчи по числу доступных воркеров
         for (let chunkIndex = 0; chunkIndex < totalChunksInEpoch; chunkIndex += privateKeys.length) {
             const tasks = [];
-            
-            // Определяем, сколько воркеров запустить в текущем параллельном залпе
             const activeWorkers = Math.min(privateKeys.length, totalChunksInEpoch - chunkIndex);
 
             for (let i = 0; i < activeWorkers; i++) {
-                // Каждый воркер получает свой уникальный приватный ключ
                 tasks.push(uploadBatchAsync(i, privateKeys[i], `${epoch}_c${chunkIndex + i}`));
-                await sleep(300); // Интервал лавины 300мс из Фазы 2
+                await sleep(300);
             }
 
-            // Ждем завершения текущего залпа воркеров
             const batchResults = await Promise.all(tasks);
             
-            // Считаем метрики внутри батча
             batchResults.forEach(r => {
                 epochResults.push(r);
                 if (r.success) successfulChunks++;
                 else failedChunks++;
             });
 
-            // Краткий промежуточный статус для понимания прогресса внутри тяжелых эпох
             if (totalChunksInEpoch > privateKeys.length) {
                 console.log(C.gray(`   [Progress] Ingested ${successfulChunks}/${totalChunksInEpoch} chunks...`));
             }
@@ -136,7 +133,6 @@ async function startLiveSwarm() {
         const epochTimeSec = parseFloat(((Date.now() - epochStart) / 1000).toFixed(2));
         const dropRate = parseFloat(((failedChunks / totalChunksInEpoch) * 100).toFixed(1));
 
-        // Логирование эпохи в репозиторий метрик
         benchmarkReport.epochs.push({
             epoch: epoch,
             total_chunks: totalChunksInEpoch,
@@ -153,14 +149,12 @@ async function startLiveSwarm() {
 
         console.log(C.bold(`📈 Epoch x${epoch} Finished: ${successfulChunks} OK / ${failedChunks} Failed | Duration: ${epochTimeSec}s | Drop Rate: ${dropRate}%`));
 
-        // Предохранитель (Circuit Breaker)
         if (dropRate > 30.0) {
             console.log(C.bold(C.red(`\n🛑 [Circuit Breaker] Drop Rate reached ${dropRate}%! Triggering emergency shutdown...`)));
             break;
         }
     }
 
-    // Сохранение отчетов
     const reportPathLocal = path.join(__dirname, 'benchmark_detailed_report.json');
     const reportPathRoot = path.join(__dirname, '../benchmark_detailed_report.json');
     const reportData = JSON.stringify(benchmarkReport, null, 4);
