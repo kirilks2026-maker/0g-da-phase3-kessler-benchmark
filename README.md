@@ -56,30 +56,37 @@ To eliminate any potential background data compression (such as `gzip`/`zstd`) o
 ## 🚀 Quick Start & Reproduction
 
 ### Prerequisites & Dependencies
-* Node.js (v18+)
-* 0G Storage Client Binary: Compiled `0g-storage-client` executable must be present at `../0g-storage-client/0g-storage-client` (or added to your system `PATH`).
+
+- **Node.js** (v18+)
+- **0G Storage Client Binary**: Compiled `0g-storage-client` executable must be present at `../0g-storage-client/0g-storage-client` (or added to your system `PATH`).
 
 ### 1. Installation
+
 ```bash
-git clone [https://github.com/kirilks2026-maker/0g-da-phase3-kessler-benchmark.git](https://github.com/kirilks2026-maker/0g-da-phase3-kessler-benchmark.git)
+git clone https://github.com
 cd 0g-da-phase3-kessler-benchmark
 npm install
-```bash
+```
 
-###2. Configuration
+### 2. Configuration
+
+Create a `.env` file based on `.env.example`:
 ```bash
-Create a .env file based on .env.example:
 cp .env.example .env
-```bash
+```
 
-###3. Execution
+### 3. Execution
+
 Run Phase 3 Baseline Benchmark:
 ```bash
 node uploader.js
-```bash
+```
+
 Run Phase 4 Adaptive Profiler:
 ```bash
 node uploader_phase4.js
-```bash
+```
 
-Disclaimer: This benchmark is conducted purely for infrastructure research and performance audit purposes on the 0G Galileo Testnet.
+---
+*Disclaimer: This benchmark is conducted purely for infrastructure research and performance audit purposes on the 0G Galileo Testnet.*
+
