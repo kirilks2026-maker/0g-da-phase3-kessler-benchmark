@@ -1,22 +1,21 @@
-const fs = require('fs');
-const path = require('path');
-const { exec } = require('child_process');
-const crypto = require('crypto');
+import fs from 'fs';
+import path from 'path';
+import { exec } from 'child_process';
+import dotenv from 'dotenv';
+import { fileURLToPath } from 'url';
 
-const envPath = fs.existsSync(path.join(__dirname, '.env')) 
-    ? path.join(__dirname, '.env') 
-    : path.join(__dirname, '../.env');
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-require('dotenv').config({ path: envPath });
+dotenv.config();
 
-// CLI и RPC Настройки
-const CLI_PATH = path.join(__dirname, './0g-storage-client/0g-storage-client');
+// Конфигурация
+const CLI_PATH = path.join(__dirname, '../0g-storage-client');
 const RPC_URL = process.env.RPC_URL || 'https://evmrpc-testnet.0g.ai';
 const INDEXER_URL = process.env.INDEXER_URL || 'https://indexer-storage-testnet-turbo.0g.ai';
+const CHUNK_SIZE_MB = 350;
 
-const START_TIME = Date.now();
-
-// Цвета консоли
+// Цвета для консоли
 const C = {
     cyan: (s) => `\x1b[36m${s}\x1b[0m`,
     green: (s) => `\x1b[32m${s}\x1b[0m`,
@@ -28,72 +27,37 @@ const C = {
 
 // Загрузка приватных ключей воркеров
 const privateKeys = Object.keys(process.env)
-    .filter(key => key.startsWith('PRIVATE_KEY_'))
-    .map(key => process.env[key].replace(/['"\r\n\s]/g, '').trim())
-    .map(pk => pk.startsWith('0x') ? pk.slice(2) : pk)
-    .filter(pk => pk.length === 64);
+    .filter(k => k.startsWith('PRIVATE_KEY'))
+    .map(k => process.env[k]?.trim())
+    .filter(k => k && k.length === 64);
 
 const sleep = (ms) => new Promise(res => setTimeout(res, ms));
 
-// Высокоточный таймлайн [+ММ:СС.ммм]
-function getTimelineMark() {
-    const elapsed = Date.now() - START_TIME;
-    const minutes = String(Math.floor(elapsed / 60000)).padStart(2, '0');
-    const seconds = String(Math.floor((elapsed % 60000) / 1000)).padStart(2, '0');
-    const ms = String(elapsed % 1000).padStart(3, '0');
-    return `[+${minutes}:${seconds}.${ms}]`;
-}
-
-// Форматирование логов в ровный столбик
-function formatLog(workerId, tag, status, details, colorFn) {
-    const timeMark = getTimelineMark();
-    const pWorker = String(workerId).padStart(2, '0');
-    const pTag = String(tag).padEnd(8, ' ');
-    const pStatus = String(status).padEnd(9, ' ');
-    const rawLine = `${timeMark} [Worker #${pWorker} | Tag ${pTag}] ${pStatus}: ${details}`;
-    return colorFn ? colorFn(rawLine) : rawLine;
-}
-
-// Буфер и генерация уникальных файлов (Anti-Compression + Unique Merkle Root)
-let currentAllocatedSizeMB = 0;
-let BASE_BUFFER = null;
-
-function ensureBufferAllocation(targetSizeMB) {
-    if (currentAllocatedSizeMB !== targetSizeMB) {
-        console.log(C.gray(`${getTimelineMark()} ⚡ Allocating dynamic ${targetSizeMB}MB RAM buffer (Anti-Compression pattern)...`));
-        // Заполняем рандомом для защиты от алгоритмов сжатия (gzip/zstd)
-        BASE_BUFFER = crypto.randomBytes(targetSizeMB * 1024 * 1024);
-        currentAllocatedSizeMB = targetSizeMB;
-    }
-}
-
-function generateMutatedFile(filePath, sizeMB) {
-    ensureBufferAllocation(sizeMB);
-    const fd = fs.openSync(filePath, 'w');
-    fs.writeSync(fd, BASE_BUFFER, 0, BASE_BUFFER.length);
-    fs.writeSync(fd, crypto.randomBytes(16)); // Уникальный хвост против дедупликации
-    fs.closeSync(fd);
+function generateMutatedFile(filePath) {
+    const buffer = Buffer.alloc(CHUNK_SIZE_MB * 1024 * 1024);
+    buffer.fill(Math.floor(Math.random() * 256));
+    fs.writeFileSync(filePath, buffer);
 }
 
 const benchmarkReport = {
     timestamp: new Date().toISOString(),
-    framework_phase: "Phase-4 (Adaptive Dynamic Load Profiler)",
+    framework_phase: "Phase-3 (Direct DA Ingestion Marathon)",
+    chunk_size_mb: CHUNK_SIZE_MB,
     summary: {
         total_success_txs: 0,
         total_failed_txs: 0,
-        total_payload_uploaded_mb: 0,
-        failure_threshold_chunk_mb: null
+        total_payload_uploaded_mb: 0
     },
     epochs: []
 };
 
-async function uploadBatchAsync(workerIndex, key, tag, chunkSizeMB) {
+async function uploadBatchAsync(workerIndex, key, tag) {
     const workerId = workerIndex + 1;
     const fileName = `dummy_w${workerId}_t${tag}.tmp`;
     const filePath = path.join(__dirname, fileName);
 
     try {
-        generateMutatedFile(filePath, chunkSizeMB);
+        generateMutatedFile(filePath);
         const cmd = `${CLI_PATH} upload --url ${RPC_URL} --indexer ${INDEXER_URL} --key ${key} --file ${filePath} --skip-tx`;
 
         return new Promise((resolve) => {
@@ -104,67 +68,77 @@ async function uploadBatchAsync(workerIndex, key, tag, chunkSizeMB) {
 
                 if (error) {
                     const errLine = (stderr || error.message).split('\n')[0];
-                    console.log(formatLog(workerId, tag, "Failed", errLine, C.red));
-                    resolve({ success: false, workerId, timeSec, error: errLine, chunkSizeMB });
+                    console.log(C.red(`   [Worker #${workerId} | Tag ${tag}] Failed: ${errLine}`));
+                    resolve({ success: false, workerId, timeSec, error: errLine });
                 } else {
-                    console.log(formatLog(workerId, tag, "Ingested", `${chunkSizeMB}MB in ${timeSec}s`, C.green));
-                    resolve({ success: true, workerId, timeSec, chunkSizeMB });
+                    console.log(C.green(`   [Worker #${workerId} | Tag ${tag}] Ingested 350MB successfully in ${timeSec}s`));
+                    resolve({ success: true, workerId, timeSec });
                 }
             });
         });
     } catch (e) {
         if (fs.existsSync(filePath)) fs.unlinkSync(filePath);
-        return { success: false, workerId, error: e.message, chunkSizeMB };
+        return { success: false, workerId, error: e.message };
     }
 }
 
-async function startAdaptiveSwarm() {
-    console.log(C.bold(C.cyan(`\n🚀 [Phase 4] Starting Dynamic Adaptive Load Profiler`)));
-    console.log(C.cyan(`📊 Configuration: ${privateKeys.length} Workers | Dynamic Scaling (50MB ➔ 500MB)\n`));
+async function startLiveSwarm() {
+    console.log(C.bold(C.cyan(`\n🚀 [Phase 3] Starting Kessler Cascade (Direct Ingestion Marathon)`)));
+    console.log(C.cyan(`📊 Configuration: ${privateKeys.length} Workers | 350MB per chunk | Replicating Phase 2 Cascade\n`));
     
     if (privateKeys.length === 0) {
-        console.log(C.red(`${getTimelineMark()} ❌ No valid 64-character private keys found in .env!`));
+        console.log(C.red('❌ No valid 64-character private keys found in .env!'));
         return;
     }
 
-    let chunkSizeMB = 50; 
-    const chunkSizeStepMB = 50;
-    const maxChunkSizeMB = 500;
-    let epoch = 1;
+    const multiplier = 10; // Базовый множитель каскада из Фазы 2
 
-    while (chunkSizeMB <= maxChunkSizeMB) {
-        const totalChunksInEpoch = privateKeys.length * 2;
-        console.log(C.bold(C.yellow(`\n➔ 🧭 Epoch x${epoch} [Step: ${chunkSizeMB}MB/chunk | Load: ${totalChunksInEpoch} Chunks (${(totalChunksInEpoch * chunkSizeMB / 1024).toFixed(2)} GB)]`)));
+    // Оригинальный каскад Кесслера (Эпохи от 1 до 10)
+    for (let epoch = 1; epoch <= 10; epoch++) {
+        // Формула из Фазы 2: общее количество чанков в этой эпохе
+        const totalChunksInEpoch = epoch * multiplier; 
+        console.log(C.bold(C.yellow(`\n➔ 🧭 Running Epoch x${epoch} [Target: ${totalChunksInEpoch} Chunks | Simultaneity Burst]`)));
         
         const epochStart = Date.now();
         let successfulChunks = 0;
         let failedChunks = 0;
         const epochResults = [];
 
+        // Разбиваем общее количество чанков на параллельные батчи по числу доступных воркеров
         for (let chunkIndex = 0; chunkIndex < totalChunksInEpoch; chunkIndex += privateKeys.length) {
             const tasks = [];
+            
+            // Определяем, сколько воркеров запустить в текущем параллельном залпе
             const activeWorkers = Math.min(privateKeys.length, totalChunksInEpoch - chunkIndex);
 
             for (let i = 0; i < activeWorkers; i++) {
-                tasks.push(uploadBatchAsync(i, privateKeys[i], `${epoch}_c${chunkIndex + i}`, chunkSizeMB));
-                await sleep(300);
+                // Каждый воркер получает свой уникальный приватный ключ
+                tasks.push(uploadBatchAsync(i, privateKeys[i], `${epoch}_c${chunkIndex + i}`));
+                await sleep(300); // Интервал лавины 300мс из Фазы 2
             }
 
+            // Ждем завершения текущего залпа воркеров
             const batchResults = await Promise.all(tasks);
             
+            // Считаем метрики внутри батча
             batchResults.forEach(r => {
                 epochResults.push(r);
                 if (r.success) successfulChunks++;
                 else failedChunks++;
             });
+
+            // Краткий промежуточный статус для понимания прогресса внутри тяжелых эпох
+            if (totalChunksInEpoch > privateKeys.length) {
+                console.log(C.gray(`   [Progress] Ingested ${successfulChunks}/${totalChunksInEpoch} chunks...`));
+            }
         }
 
         const epochTimeSec = parseFloat(((Date.now() - epochStart) / 1000).toFixed(2));
         const dropRate = parseFloat(((failedChunks / totalChunksInEpoch) * 100).toFixed(1));
 
+        // Логирование эпохи в репозиторий метрик
         benchmarkReport.epochs.push({
             epoch: epoch,
-            chunk_size_mb: chunkSizeMB,
             total_chunks: totalChunksInEpoch,
             duration_sec: epochTimeSec,
             successful: successfulChunks,
@@ -175,20 +149,18 @@ async function startAdaptiveSwarm() {
 
         benchmarkReport.summary.total_success_txs += successfulChunks;
         benchmarkReport.summary.total_failed_txs += failedChunks;
-        benchmarkReport.summary.total_payload_uploaded_mb += (successfulChunks * chunkSizeMB);
+        benchmarkReport.summary.total_payload_uploaded_mb += (successfulChunks * CHUNK_SIZE_MB);
 
-        console.log(C.bold(`${getTimelineMark()} 📈 Epoch x${epoch} (${chunkSizeMB}MB) Finished: ${successfulChunks} OK / ${failedChunks} Failed | Duration: ${epochTimeSec}s | Drop Rate: ${dropRate}%`));
+        console.log(C.bold(`📈 Epoch x${epoch} Finished: ${successfulChunks} OK / ${failedChunks} Failed | Duration: ${epochTimeSec}s | Drop Rate: ${dropRate}%`));
 
+        // Предохранитель (Circuit Breaker)
         if (dropRate > 30.0) {
-            benchmarkReport.summary.failure_threshold_chunk_mb = chunkSizeMB;
-            console.log(C.bold(C.red(`\n🛑 [Circuit Breaker] Failure Threshold Discovered at ${chunkSizeMB}MB per chunk! (Drop Rate: ${dropRate}%)`)));
+            console.log(C.bold(C.red(`\n🛑 [Circuit Breaker] Drop Rate reached ${dropRate}%! Triggering emergency shutdown...`)));
             break;
         }
-
-        chunkSizeMB += chunkSizeStepMB;
-        epoch++;
     }
 
+    // Сохранение отчетов
     const reportPathLocal = path.join(__dirname, 'benchmark_detailed_report.json');
     const reportPathRoot = path.join(__dirname, '../benchmark_detailed_report.json');
     const reportData = JSON.stringify(benchmarkReport, null, 4);
@@ -199,7 +171,7 @@ async function startAdaptiveSwarm() {
     console.log(C.bold(C.cyan(`\n💾 Benchmarking complete. Telemetry saved to:`)));
     console.log(C.gray(`   - ${reportPathLocal}`));
     console.log(C.gray(`   - ${reportPathRoot}`));
-    console.log(C.bold(C.green(`🏁 Dynamic Profiling Complete. Total Ingested: ${benchmarkReport.summary.total_payload_uploaded_mb} MB\n`)));
+    console.log(C.bold(C.green(`🏁 Total Data Successfully Ingested to 0G DA: ${benchmarkReport.summary.total_payload_uploaded_mb} MB\n`)));
 }
 
-startAdaptiveSwarm();
+startLiveSwarm();
