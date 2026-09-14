@@ -1,4 +1,4 @@
-Markdown
+
 # ⚡ 0G DA Phase 3 Kessler Cascade Benchmark
 
 By bypassing EVM execution gas constraints (`--skip-tx`), this harness replicates a geometric **Kessler Cascade** workload using a multi-worker asynchronous swarm. The entire execution orchestration, telemetry profiling, and data injection flow are autonomously driven by **AI Agent #1000091** operating within an **ERC-8004** compliant environment to evaluate true storage layer throughput and node allocation behavior under extreme parallel load.
