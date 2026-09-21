@@ -1,0 +1,262 @@
+терминал фаза 3:
+◇ injected env (12) from .env // tip: ⌁ auth for agents [www.vestauth.com]
+⚡ Allocating 350MB base RAM buffer...
+
+🚀 [Phase 3] Starting Kessler Cascade (Direct Ingestion Marathon)
+📊 Configuration: 10 Workers | 350MB per chunk | Replicating Phase 2 Cascade
+
+
+➔ 🧭 Running Epoch x1 [Target: 10 Chunks (3.4 GB) | Simultaneity Burst]
+   [Worker #8 | Tag 1_c7] Ingested 350MB in 133.3s
+   [Worker #7 | Tag 1_c6] Ingested 350MB in 145.19s
+   [Worker #10 | Tag 1_c9] Ingested 350MB in 134.8s
+   [Worker #2 | Tag 1_c1] Ingested 350MB in 184.42s
+   [Worker #6 | Tag 1_c5] Ingested 350MB in 162.73s
+   [Worker #5 | Tag 1_c4] Ingested 350MB in 172.36s
+   [Worker #4 | Tag 1_c3] Ingested 350MB in 179.21s
+   [Worker #3 | Tag 1_c2] Ingested 350MB in 186.59s
+   [Worker #9 | Tag 1_c8] Ingested 350MB in 168.72s
+   [Worker #1 | Tag 1_c0] Ingested 350MB in 214.12s
+📈 Epoch x1 Finished: 10 OK / 0 Failed | Duration: 214.33s | Drop Rate: 0%
+
+➔ 🧭 Running Epoch x2 [Target: 20 Chunks (6.8 GB) | Simultaneity Burst]
+   [Worker #10 | Tag 2_c9] Ingested 350MB in 118.46s
+   [Worker #1 | Tag 2_c0] Ingested 350MB in 208.78s
+   [Worker #9 | Tag 2_c8] Ingested 350MB in 131.76s
+   [Worker #4 | Tag 2_c3] Ingested 350MB in 204.5s
+   [Worker #8 | Tag 2_c7] Ingested 350MB in 154s
+   [Worker #2 | Tag 2_c1] Ingested 350MB in 225.49s
+   [Worker #3 | Tag 2_c2] Ingested 350MB in 226s
+   [Worker #5 | Tag 2_c4] Ingested 350MB in 238.36s
+   [Worker #6 | Tag 2_c5] Ingested 350MB in 234.44s
+   [Worker #7 | Tag 2_c6] Ingested 350MB in 231.38s
+   [Progress] Ingested 10/20 chunks...
+   [Worker #1 | Tag 2_c10] Ingested 350MB in 176.81s
+   [Worker #6 | Tag 2_c15] Ingested 350MB in 159.88s
+   [Worker #7 | Tag 2_c16] Ingested 350MB in 158.39s
+   [Worker #8 | Tag 2_c17] Ingested 350MB in 157.82s
+   [Worker #3 | Tag 2_c12] Ingested 350MB in 187.78s
+   [Worker #5 | Tag 2_c14] Ingested 350MB in 173.53s
+   [Worker #4 | Tag 2_c13] Ingested 350MB in 176.93s
+   [Worker #2 | Tag 2_c11] Ingested 350MB in 194.32s
+   [Worker #9 | Tag 2_c18] Ingested 350MB in 178.97s
+   [Worker #10 | Tag 2_c19] Ingested 350MB in 175.51s
+   [Progress] Ingested 20/20 chunks...
+📈 Epoch x2 Finished: 20 OK / 0 Failed | Duration: 480.15s | Drop Rate: 0%
+
+➔ 🧭 Running Epoch x3 [Target: 30 Chunks (10.3 GB) | Simultaneity Burst]
+   [Worker #10 | Tag 3_c9] Ingested 350MB in 102.24s
+   [Worker #7 | Tag 3_c6] Ingested 350MB in 144.21s
+   [Worker #8 | Tag 3_c7] Ingested 350MB in 143.36s
+   [Worker #9 | Tag 3_c8] Ingested 350MB in 139.61s
+   [Worker #1 | Tag 3_c0] Ingested 350MB in 187.39s
+   [Worker #2 | Tag 3_c1] Ingested 350MB in 187.72s
+   [Worker #6 | Tag 3_c5] Ingested 350MB in 172.76s
+   [Worker #3 | Tag 3_c2] Ingested 350MB in 219.58s
+   [Worker #5 | Tag 3_c4] Ingested 350MB in 208.4s
+   [Worker #4 | Tag 3_c3] Ingested 350MB in 213.66s
+   [Progress] Ingested 10/30 chunks...
+   [Worker #6 | Tag 3_c15] Ingested 350MB in 159.71s
+   [Worker #1 | Tag 3_c10] Ingested 350MB in 226.75s
+   [Worker #7 | Tag 3_c16] Ingested 350MB in 175.49s
+   [Worker #5 | Tag 3_c14] Ingested 350MB in 185.15s
+   [Worker #4 | Tag 3_c13] Ingested 350MB in 223.3s
+   [Worker #2 | Tag 3_c11] Ingested 350MB in 232s
+   [Worker #3 | Tag 3_c12] Ingested 350MB in 233.75s
+   [Worker #9 | Tag 3_c18] Ingested 350MB in 171.57s
+   [Worker #8 | Tag 3_c17] Ingested 350MB in 193.52s
+   [Worker #10 | Tag 3_c19] Ingested 350MB in 184.01s
+   [Progress] Ingested 20/30 chunks...
+   [Worker #10 | Tag 3_c29] Ingested 350MB in 102.55s
+   [Worker #9 | Tag 3_c28] Ingested 350MB in 142.35s
+   [Worker #2 | Tag 3_c21] Ingested 350MB in 178.03s
+   [Worker #6 | Tag 3_c25] Ingested 350MB in 165.92s
+   [Worker #4 | Tag 3_c23] Ingested 350MB in 175.98s
+   [Worker #1 | Tag 3_c20] Ingested 350MB in 185.03s
+   [Worker #8 | Tag 3_c27] Ingested 350MB in 156.54s
+   [Worker #5 | Tag 3_c24] Ingested 350MB in 171.05s
+   [Worker #7 | Tag 3_c26] Ingested 350MB in 165.72s
+   [Worker #3 | Tag 3_c22] Ingested 350MB in 187.8s
+   [Progress] Ingested 30/30 chunks...
+📈 Epoch x3 Finished: 30 OK / 0 Failed | Duration: 670.11s | Drop Rate: 0%
+
+➔ 🧭 Running Epoch x4 [Target: 40 Chunks (13.7 GB) | Simultaneity Burst]
+   [Worker #7 | Tag 4_c6] Ingested 350MB in 252.76s
+   [Worker #9 | Tag 4_c8] Ingested 350MB in 247.48s
+   [Worker #10 | Tag 4_c9] Ingested 350MB in 239.77s
+   [Worker #8 | Tag 4_c7] Ingested 350MB in 255.78s
+   [Worker #1 | Tag 4_c0] Ingested 350MB in 290.83s
+   [Worker #5 | Tag 4_c4] Ingested 350MB in 278.43s
+   [Worker #3 | Tag 4_c2] Ingested 350MB in 292.82s
+   [Worker #2 | Tag 4_c1] Ingested 350MB in 299.17s
+   [Worker #4 | Tag 4_c3] Ingested 350MB in 308.8s
+   [Worker #6 | Tag 4_c5] Ingested 350MB in 310.19s
+   [Progress] Ingested 10/40 chunks...
+   [Worker #6 | Tag 4_c15] Ingested 350MB in 260.1s
+   [Worker #10 | Tag 4_c19] Ingested 350MB in 261.53s
+   [Worker #2 | Tag 4_c11] Ingested 350MB in 325.63s
+   [Worker #1 | Tag 4_c10] Ingested 350MB in 329.29s
+   [Worker #3 | Tag 4_c12] Ingested 350MB in 327.28s
+   [Worker #4 | Tag 4_c13] Ingested 350MB in 322.55s
+   [Worker #7 | Tag 4_c16] Ingested 350MB in 307.54s
+   [Worker #9 | Tag 4_c18] Ingested 350MB in 296.71s
+   [Worker #5 | Tag 4_c14] Ingested 350MB in 320.01s
+   [Worker #8 | Tag 4_c17] Ingested 350MB in 305.07s
+   [Progress] Ingested 20/40 chunks...
+   [Worker #9 | Tag 4_c28] Ingested 350MB in 209.82s
+   [Worker #5 | Tag 4_c24] Ingested 350MB in 280.73s
+   [Worker #10 | Tag 4_c29] Ingested 350MB in 266.47s
+   [Worker #3 | Tag 4_c22] Ingested 350MB in 315.94s
+   [Worker #6 | Tag 4_c25] Ingested 350MB in 302.88s
+   [Worker #2 | Tag 4_c21] Ingested 350MB in 323.9s
+   [Worker #1 | Tag 4_c20] Ingested 350MB in 326.82s
+   [Worker #4 | Tag 4_c23] Ingested 350MB in 319.57s
+   [Worker #8 | Tag 4_c27] Ingested 350MB in 299.13s
+   [Worker #7 | Tag 4_c26] Ingested 350MB in 318.92s
+   [Progress] Ingested 30/40 chunks...
+   [Worker #10 | Tag 4_c39] Ingested 350MB in 298.96s
+   [Worker #4 | Tag 4_c33] Ingested 350MB in 362.65s
+   [Worker #1 | Tag 4_c30] Ingested 350MB in 379.57s
+   [Worker #7 | Tag 4_c36] Ingested 350MB in 356.74s
+   [Worker #8 | Tag 4_c37] Ingested 350MB in 351.76s
+   [Worker #5 | Tag 4_c34] Ingested 350MB in 371.03s
+   [Worker #3 | Tag 4_c32] Ingested 350MB in 380.5s
+   [Worker #2 | Tag 4_c31] Ingested 350MB in 387.66s
+   [Worker #9 | Tag 4_c38] Ingested 350MB in 353.24s
+   [Worker #6 | Tag 4_c35] Ingested 350MB in 371.63s
+   [Progress] Ingested 40/40 chunks...
+📈 Epoch x4 Finished: 40 OK / 0 Failed | Duration: 1394.64s | Drop Rate: 0%
+
+➔ 🧭 Running Epoch x5 [Target: 50 Chunks (17.1 GB) | Simultaneity Burst]
+   [Worker #7 | Tag 5_c6] Ingested 350MB in 339.05s
+   [Worker #6 | Tag 5_c5] Ingested 350MB in 351.4s
+   [Worker #8 | Tag 5_c7] Ingested 350MB in 336.37s
+   [Worker #5 | Tag 5_c4] Ingested 350MB in 370.37s
+   [Worker #1 | Tag 5_c0] Ingested 350MB in 392.61s
+   [Worker #10 | Tag 5_c9] Ingested 350MB in 340.11s
+   [Worker #3 | Tag 5_c2] Ingested 350MB in 393.06s
+   [Worker #2 | Tag 5_c1] Ingested 350MB in 397.43s
+   [Worker #4 | Tag 5_c3] Ingested 350MB in 391.41s
+   [Worker #9 | Tag 5_c8] Ingested 350MB in 352.8s
+   [Progress] Ingested 10/50 chunks...
+   [Worker #9 | Tag 5_c18] Ingested 350MB in 254.94s
+   [Worker #1 | Tag 5_c10] Ingested 350MB in 318.92s
+   [Worker #6 | Tag 5_c15] Ingested 350MB in 314.19s
+   [Worker #4 | Tag 5_c13] Ingested 350MB in 337.22s
+   [Worker #2 | Tag 5_c11] Ingested 350MB in 352.06s
+   [Worker #8 | Tag 5_c17] Ingested 350MB in 330.77s
+   [Worker #10 | Tag 5_c19] Ingested 350MB in 319.68s
+   [Worker #5 | Tag 5_c14] Ingested 350MB in 367.25s
+   [Worker #7 | Tag 5_c16] Ingested 350MB in 357s
+   [Worker #3 | Tag 5_c12] Ingested 350MB in 378.94s
+   [Progress] Ingested 20/50 chunks...
+   [Worker #1 | Tag 5_c20] Failed: INFO[2026-09-10T10:35:34Z] Selecting nodes ...                          
+   [Worker #2 | Tag 5_c21] Failed: INFO[2026-09-10T10:35:42Z] Selecting nodes ...                          
+   [Worker #5 | Tag 5_c24] Ingested 350MB in 298.67s
+   [Worker #6 | Tag 5_c25] Ingested 350MB in 298.07s
+   [Worker #7 | Tag 5_c26] Ingested 350MB in 307.74s
+   [Worker #8 | Tag 5_c27] Ingested 350MB in 313.17s
+   [Worker #4 | Tag 5_c23] Ingested 350MB in 337.74s
+   [Worker #3 | Tag 5_c22] Ingested 350MB in 343.13s
+   [Worker #10 | Tag 5_c29] Ingested 350MB in 304.13s
+   [Worker #9 | Tag 5_c28] Ingested 350MB in 310.48s
+   [Progress] Ingested 28/50 chunks...
+   [Worker #1 | Tag 5_c30] Failed: INFO[2026-09-10T10:41:24Z] Selecting nodes ...                          
+   [Worker #2 | Tag 5_c31] Failed: INFO[2026-09-10T10:41:30Z] Selecting nodes ...                          
+   [Worker #9 | Tag 5_c38] Ingested 350MB in 283.61s
+   [Worker #5 | Tag 5_c34] Ingested 350MB in 305.57s
+   [Worker #6 | Tag 5_c35] Ingested 350MB in 299.38s
+   [Worker #7 | Tag 5_c36] Ingested 350MB in 297.45s
+   [Worker #3 | Tag 5_c32] Ingested 350MB in 336.22s
+   [Worker #8 | Tag 5_c37] Ingested 350MB in 310.7s
+   [Worker #10 | Tag 5_c39] Ingested 350MB in 298.27s
+   [Worker #4 | Tag 5_c33] Ingested 350MB in 346.89s
+   [Progress] Ingested 36/50 chunks...
+   [Worker #2 | Tag 5_c41] Failed: INFO[2026-09-10T10:47:24Z] Selecting nodes ...                          
+   [Worker #3 | Tag 5_c42] Failed: INFO[2026-09-10T10:47:27Z] Selecting nodes ...                          
+   [Worker #1 | Tag 5_c40] Failed: INFO[2026-09-10T10:47:22Z] Selecting nodes ...                          
+   [Worker #4 | Tag 5_c43] Failed: INFO[2026-09-10T10:47:34Z] Selecting nodes ...                          
+   [Worker #5 | Tag 5_c44] Ingested 350MB in 286.5s
+   [Worker #6 | Tag 5_c45] Ingested 350MB in 286.31s
+   [Worker #9 | Tag 5_c48] Ingested 350MB in 285.81s
+   [Worker #7 | Tag 5_c46] Ingested 350MB in 300.48s
+   [Worker #8 | Tag 5_c47] Ingested 350MB in 304.05s
+   [Worker #10 | Tag 5_c49] Ingested 350MB in 294.35s
+   [Progress] Ingested 42/50 chunks...
+📈 Epoch x5 Finished: 42 OK / 8 Failed | Duration: 1837.92s | Drop Rate: 16%
+
+➔ 🧭 Running Epoch x6 [Target: 60 Chunks (20.5 GB) | Simultaneity Burst]
+   [Worker #4 | Tag 6_c3] Failed: INFO[2026-09-10T10:53:17Z] Selecting nodes ...                          
+   [Worker #1 | Tag 6_c0] Failed: INFO[2026-09-10T10:53:05Z] Selecting nodes ...                          
+   [Worker #2 | Tag 6_c1] Failed: INFO[2026-09-10T10:53:07Z] Selecting nodes ...                          
+   [Worker #3 | Tag 6_c2] Failed: INFO[2026-09-10T10:53:11Z] Selecting nodes ...                          
+   [Worker #10 | Tag 6_c9] Ingested 350MB in 241.03s
+   [Worker #7 | Tag 6_c6] Ingested 350MB in 274.3s
+   [Worker #9 | Tag 6_c8] Ingested 350MB in 261.22s
+   [Worker #5 | Tag 6_c4] Ingested 350MB in 288.85s
+   [Worker #6 | Tag 6_c5] Ingested 350MB in 284.95s
+   [Worker #8 | Tag 6_c7] Ingested 350MB in 296.61s
+   [Progress] Ingested 6/60 chunks...
+   [Worker #5 | Tag 6_c14] Failed: INFO[2026-09-10T10:58:54Z] Selecting nodes ...                          
+   [Worker #4 | Tag 6_c13] Failed: INFO[2026-09-10T10:58:50Z] Selecting nodes ...                          
+   [Worker #2 | Tag 6_c11] Failed: INFO[2026-09-10T10:58:45Z] Selecting nodes ...                          
+   [Worker #6 | Tag 6_c15] Failed: INFO[2026-09-10T10:59:04Z] Selecting nodes ...                          
+   [Worker #1 | Tag 6_c10] Failed: INFO[2026-09-10T10:58:45Z] Selecting nodes ...                          
+   [Worker #3 | Tag 6_c12] Failed: INFO[2026-09-10T10:58:48Z] Selecting nodes ...                          
+   [Worker #10 | Tag 6_c19] Ingested 350MB in 202.05s
+   [Worker #7 | Tag 6_c16] Ingested 350MB in 230.63s
+   [Worker #9 | Tag 6_c18] Ingested 350MB in 220.9s
+   [Worker #8 | Tag 6_c17] Ingested 350MB in 240.26s
+   [Progress] Ingested 10/60 chunks...
+   [Worker #2 | Tag 6_c21] Failed: INFO[2026-09-10T11:03:21Z] Selecting nodes ...                          
+   [Worker #3 | Tag 6_c22] Failed: INFO[2026-09-10T11:03:25Z] Selecting nodes ...                          
+   [Worker #1 | Tag 6_c20] Failed: INFO[2026-09-10T11:03:20Z] Selecting nodes ...                          
+   [Worker #5 | Tag 6_c24] Failed: INFO[2026-09-10T11:03:40Z] Selecting nodes ...                          
+   [Worker #4 | Tag 6_c23] Failed: INFO[2026-09-10T11:03:33Z] Selecting nodes ...                          
+   [Worker #6 | Tag 6_c25] Failed: INFO[2026-09-10T11:03:43Z] Selecting nodes ...                          
+   [Worker #7 | Tag 6_c26] Failed: INFO[2026-09-10T11:03:56Z] Selecting nodes ...                          
+   [Worker #10 | Tag 6_c29] Ingested 350MB in 214.38s
+   [Worker #8 | Tag 6_c27] Ingested 350MB in 232.1s
+   [Worker #9 | Tag 6_c28] Ingested 350MB in 238.94s
+   [Progress] Ingested 13/60 chunks...
+   [Worker #6 | Tag 6_c35] Failed: INFO[2026-09-10T11:08:25Z] Selecting nodes ...                          
+   [Worker #4 | Tag 6_c33] Failed: INFO[2026-09-10T11:08:17Z] Selecting nodes ...                          
+   [Worker #8 | Tag 6_c37] Failed: INFO[2026-09-10T11:08:39Z] Selecting nodes ...                          
+   [Worker #5 | Tag 6_c34] Failed: INFO[2026-09-10T11:08:23Z] Selecting nodes ...                          
+   [Worker #1 | Tag 6_c30] Failed: INFO[2026-09-10T11:08:05Z] Selecting nodes ...                          
+   [Worker #3 | Tag 6_c32] Failed: INFO[2026-09-10T11:08:15Z] Selecting nodes ...                          
+   [Worker #2 | Tag 6_c31] Failed: INFO[2026-09-10T11:08:08Z] Selecting nodes ...                          
+   [Worker #7 | Tag 6_c36] Failed: INFO[2026-09-10T11:08:35Z] Selecting nodes ...                          
+   [Worker #10 | Tag 6_c39] Ingested 350MB in 208.18s
+   [Worker #9 | Tag 6_c38] Ingested 350MB in 221.69s
+   [Progress] Ingested 15/60 chunks...
+   [Worker #4 | Tag 6_c43] Failed: INFO[2026-09-10T11:12:42Z] Selecting nodes ...                          
+   [Worker #5 | Tag 6_c44] Failed: INFO[2026-09-10T11:12:47Z] Selecting nodes ...                          
+   [Worker #7 | Tag 6_c46] Failed: INFO[2026-09-10T11:12:58Z] Selecting nodes ...                          
+   [Worker #8 | Tag 6_c47] Failed: INFO[2026-09-10T11:13:03Z] Selecting nodes ...                          
+   [Worker #1 | Tag 6_c40] Failed: INFO[2026-09-10T11:12:30Z] Selecting nodes ...                          
+   [Worker #2 | Tag 6_c41] Failed: INFO[2026-09-10T11:12:33Z] Selecting nodes ...                          
+   [Worker #6 | Tag 6_c45] Failed: INFO[2026-09-10T11:12:55Z] Selecting nodes ...                          
+   [Worker #3 | Tag 6_c42] Failed: INFO[2026-09-10T11:12:37Z] Selecting nodes ...                          
+   [Worker #9 | Tag 6_c48] Ingested 350MB in 205.09s
+   [Worker #10 | Tag 6_c49] Ingested 350MB in 208.25s
+   [Progress] Ingested 17/60 chunks...
+   [Worker #9 | Tag 6_c58] Failed: INFO[2026-09-10T11:17:25Z] Selecting nodes ...                          
+   [Worker #6 | Tag 6_c55] Failed: INFO[2026-09-10T11:17:05Z] Selecting nodes ...                          
+   [Worker #8 | Tag 6_c57] Failed: INFO[2026-09-10T11:17:19Z] Selecting nodes ...                          
+   [Worker #1 | Tag 6_c50] Failed: INFO[2026-09-10T11:16:45Z] Selecting nodes ...                          
+   [Worker #2 | Tag 6_c51] Failed: INFO[2026-09-10T11:16:49Z] Selecting nodes ...                          
+   [Worker #4 | Tag 6_c53] Failed: INFO[2026-09-10T11:16:58Z] Selecting nodes ...                          
+   [Worker #3 | Tag 6_c52] Failed: INFO[2026-09-10T11:16:53Z] Selecting nodes ...                          
+   [Worker #5 | Tag 6_c54] Failed: INFO[2026-09-10T11:17:01Z] Selecting nodes ...                          
+   [Worker #7 | Tag 6_c56] Failed: INFO[2026-09-10T11:17:16Z] Selecting nodes ...                          
+   [Worker #10 | Tag 6_c59] Ingested 350MB in 216.31s
+   [Progress] Ingested 18/60 chunks...
+📈 Epoch x6 Finished: 18 OK / 42 Failed | Duration: 1682.41s | Drop Rate: 70%
+
+🛑 [Circuit Breaker] Drop Rate reached 70%! Triggering emergency shutdown...
+
+💾 Benchmarking complete. Telemetry saved to:
+   - /workspaces/omcp-da-stress-framework/omcp-da-stress-framework-Phase-3/benchmark_detailed_report.json
+   - /workspaces/omcp-da-stress-framework/benchmark_detailed_report.json
+🏁 Total Data Successfully Ingested to 0G DA: 56000 MB
