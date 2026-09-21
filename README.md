@@ -14,15 +14,16 @@ By bypassing EVM execution gas constraints (`--skip-tx`), this harness replicate
 
 ---
 
-## 📂 Repository Structure
+## 📁 Repository Structure
 
-- `0g_labs_bug_report.md` — Comprehensive technical analysis report for 0G Labs
-- `benchmark_detailed_report.json` — Raw benchmark telemetry and execution metrics
-- `uploader.js` — Core multi-worker Kessler Cascade stress harness
-- `package.json` — Dependencies (dotenv)
-- `.env.example` — Environment configuration template
-- `.gitignore` — Git exclusion rules
-* assets/ — Terminal execution screenshots and visual evidence of Circuit Breaker triggers.
+* `0g_labs_bug_report.md` — Comprehensive technical analysis report for 0G Labs
+* `phase3_kessler_cascade_terminal.txt` — Raw multi-threaded execution trace log
+* `benchmark_detailed_report.json` — Structured telemetry and execution metrics
+* `uploader.js` — Core multi-worker Kessler Cascade stress harness
+* `package.json` — Project dependencies
+* `.env.example` — Environment configuration template
+* `.gitignore` — Git exclusion rules
+* `assets/` — Terminal execution screenshots and visual evidence of Circuit Breaker triggers
 ---
 
 ## 🚀 Quick Start & Reproduction
@@ -56,8 +57,9 @@ node uploader.js
 ```
 
 ### 📊 Benchmark Summary & Bug Report
-Detailed telemetry, comparative analysis against Phase 2 (EVM-bound), and root-cause isolation logs are available in the official report:
+Detailed telemetry, comparative analysis against Phase 2 (EVM-bound), and root-cause isolation logs are available in the official reports:
 
-👉 [Read the Full 0G Labs Bug Report (0g_labs_bug_report.md)](0g_labs_bug_report.md)
+* 📄 **Official Analysis:** [0G Labs Bug Report](./0g_labs_bug_report.md) — *Detailed architectural root-cause isolation and vulnerability breakdown.*
+* 🖥️ **Execution Trace:** [Phase 3 Terminal Logs](./phase3_kessler_cascade_terminal.txt) — *Raw multi-threaded CLI output demonstrating 56,000 MB stress ingestion and automated 70% Drop Rate Circuit Breaker trigger.*
 
 *Disclaimer: This benchmark is conducted purely for infrastructure research and performance audit purposes on the 0G Galileo Testnet.*
